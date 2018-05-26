@@ -79,25 +79,33 @@
 
 		<form action="/zadost" method="POST" class="container">
 
-			<fieldset>
+			<fieldset class="row">
 
-				<legend>Tržní řád</legend>
+				<legend>Návrh na</legend>
 
-				<label for="field_typ">Návrh na zařazení</label>
-				<select name="typ">
-					<option value="tržnice">tržnice </option>
-					<option value="tržiště">tržiště</option>
-					<option value="tržní">tržní místo</option>
-					<option value="trh">trh</option>
-					<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
-					<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
-					<option value="předsunuté">předsunuté prodejní místo</option>
-					<option value="místo">místo pro nabídku prodeje zboží</option>
-					<option value="místo">místo pro nabídku služby</option>
-					<option value="ostatní">ostatní</option>
-				</select>
-				<label for="field_typ_ostatni">Ostatní</label>
-				<input class="u-full-width" type="text" name="typ_ostatni">
+				<div class="one-half column">
+					<select name="typ">
+						<option value="zařazení">zařazení </option>
+						<option value="vyřazení">vyřazení</option>
+						<option value="změnu (místa, sortimentu, &hellip;)">změnu (místa, sortimentu, &hellip;)</option>
+					</select>
+				</div>
+
+				<div class="one-half column">
+					<select name="typ">
+						<option value="tržnice">tržnice </option>
+						<option value="tržiště">tržiště</option>
+						<option value="tržní">tržní místo</option>
+						<option value="trh">trh</option>
+						<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
+						<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
+						<option value="předsunuté">předsunuté prodejní místo</option>
+						<option value="místo">místo pro nabídku prodeje zboží</option>
+						<option value="místo">místo pro nabídku služby</option>
+						<option value="ostatní">ostatní</option>
+					</select>
+				</div>
+
 			</fieldset>
 
 
