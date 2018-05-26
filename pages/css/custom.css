@@ -64,3 +64,11 @@ legend {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
+.nowrap {
+    white-space: nowrap
+}
+
+.sup {
+    margin-left: -4px;
+}
