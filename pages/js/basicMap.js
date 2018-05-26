@@ -46,7 +46,7 @@ function initMap() {
     //get the vector data
     var x = new XMLHttpRequest();
     x.overrideMimeType("application/json");
-    x.open("GET", '/geojson', true);
+    x.open("GET", 'geo/trzni-rad.geojson', true);
     x.onreadystatechange = function () {
         if ((x.readyState) == 4 && ((x.status == 200) || (x.status == 0)))
         {
