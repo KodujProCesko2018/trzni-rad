@@ -3,12 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	_ "github.com/KodujProCesko2018/trzni-rad/server/statik"
-	"github.com/rakyll/statik/fs"
-	"github.com/tealeg/xlsx"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	_ "./statik"
+	"github.com/rakyll/statik/fs"
+	"github.com/tealeg/xlsx"
 )
 
 const (
