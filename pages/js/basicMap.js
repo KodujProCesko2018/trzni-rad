@@ -1,6 +1,5 @@
 var map = null;
 var trzniMista = null;
-var drawnItems = null;
 
 function onEachFeature(feature, layer) {
     var popupContent = "<p>Adresa: ";
