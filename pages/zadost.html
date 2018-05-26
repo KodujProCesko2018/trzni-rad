@@ -6,11 +6,11 @@
 	<title>Žádost o zařazení | Tržní řád Prahy</title>
 </head>
 <body>
-<form>
+<form action="/zadost" method="POST">
 	<fieldset>
 		<legend>Tržní řád</legend>
 		<label for="field_typ">Návrh na zařazení</label>
-		<select name="typ" multiple>
+		<select name="typ">
 			<option value="tržnice">tržnice </option>
 			<option value="tržiště">tržiště</option>
 			<option value="tržní">tržní místo</option>
@@ -27,9 +27,10 @@
 	<fieldset>
 		<legend>Adresa místa</legend>
 		<div class="row">
-			<div class="columns six"><label for="field_ulice">Ulice</label><input class="u-full-width" id="field_ulice" type="text" name="ulice"></div>
-			<div class="columns three"><label for="field_cp">č.p.</label><input class="u-full-width" id="field_cp" type="text" name="cp"></div>
-			<div class="columns three"><label for="field_co">č.o</label><input class="u-full-width" id="field_co" type="text" name="co"></div>
+			<div class="columns five"><label for="field_ulice">Ulice</label><input class="u-full-width" id="field_ulice" type="text" name="ulice"></div>
+			<div class="columns two"><label for="field_cp">č.p.</label><input class="u-full-width" id="field_cp" type="text" name="cp"></div>
+			<div class="columns two"><label for="field_co">č.o</label><input class="u-full-width" id="field_co" type="text" name="co"></div>
+			<div class="columns three"><label for="field_co">Městská část</label><input class="u-full-width" id="field_mestska_cast" type="text" name="mestska_cast" placeholder="Praha 2"></div>
 		</div>
 
 		<div class="row">
