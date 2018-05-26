@@ -111,12 +111,46 @@
 						Návrh
 					</h1>
 				</div>
+			</div>
 
-				<p class="twelve columns">
-					na změnu přílohy (novelu) nařízení hl.m. Prahy č. 9/2011 Sb. hl. m. Prahy, kterým se vydává tržní řád, ve znění pozdějších
-					předpisů
+			<div class="row">
+				<p> na změnu přílohy (novelu) nařízení hl.&thinsp;m. Prahy č.&thinsp;9/2011 Sb. hl.&thinsp;m. Prahy, kterým se vydává tržní
+					řád, ve znění pozdějších předpisů.
 				</p>
 			</div>
+
+			<div class="row">
+				<!-- 				<div class="one column lg-ico-wrap">
+					<span class="lg-ico">
+						&ldquo;
+					</span></div> -->
+
+				<h3>
+					V tomto formuláři vyplníte:
+				</h3>
+
+				<p>
+					<ol>
+						<li>
+							Co navrhujete
+						</li>
+
+						<li>
+							Adresu řešeného místa
+						</li>
+
+						<li>
+							Prodejní dobu a zboží
+						</li>
+
+						<li>
+							Vaše údaje
+						</li>
+					</ol>
+					a následné ho odešlete na Magistrát.
+				</p>
+			</div>
+		</div>
 		</div>
 
 
@@ -125,12 +159,12 @@
 		<div class="container">
 			<form action="/zadost" method="POST">
 				<fieldset>
-					<legend>Návrh na</legend>
+					<legend>1. Co navrhujete</legend>
 
 					<div class="row">
 						<div class="one-third column">
 							<label for="na">
-								Vyberte co navrhujete
+								Vyberte typ návrhu
 							</label>
 							<select name="na" class="u-full-width">
 								<option value="zařazení">zařazení </option>
@@ -169,7 +203,7 @@
 
 		<fieldset>
 			<div class="container">
-				<legend>Adresa místa</legend>
+				<legend>2. Adresa řešeného místa</legend>
 
 				<p>
 					Adresu můžete zvolit nakreslením polygonu na mapě, nebo vyplnit textem níž.
@@ -216,9 +250,13 @@
 					<div class="columns two">
 						<label for="field_velikost">Velikost místa</label>
 						<span class="nowrap">
-							<input class="u-full-width" id="field_velikost" type="text" name="velikost" placeholder="minimálně 2"> m
-							<sup class="sup">2</sup>
+							<input class="u-full-width" id="field_velikost" type="number" name="velikost" placeholder="minimálně 2">
+							<span>
+								m
+								<sup class="sup">2</sup>
+							</span>
 						</span>
+						<!--		/.nowrap		-->
 					</div>
 
 					<div class="columns three offset-by-one">
@@ -230,11 +268,8 @@
 				<div class="row">
 					<label for="field_upresneni">
 						Další upřesnění umístění
-						<i>
-							(vyplňte jen pokud je to nutné)
-						</i>
 					</label>
-					<textarea rows="1" cols="" class="u-full-width" id="field-upresneni" type="text" name="upresneni"></textarea>
+					<textarea rows="1" cols="" class="u-full-width" id="field-upresneni" type="text" name="upresneni" placeholder="např. dva metry od chodníku směrem ke kašně"></textarea>
 				</div>
 			</div>
 			<!--	/.container	-->
@@ -247,23 +282,46 @@
 		<div class="container">
 			<fieldset>
 				<legend>
-					Prodejní doba a zboží
+					3. Prodejní doba a zboží
 				</legend>
 
-				<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
-				<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni">
+				<div class="row">
+					<div class="one-half column">
+						<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
+						<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni" placeholder="např. krytý dřevěný stánek 4&times;4&times;3m">
+					</div>
+				</div>
 
-				<label for="field_doba">Prodejní doba</label>
-				<input class="u-full-width" id="field_doba" type="text" name="doba">
+				<div class="row">
+					<div class="one-third column">
+						<label for="field_doba">Prodejní doba</label>
+						<input class="u-full-width" id="field_doba" type="text" name="doba" placeholder="např. 8:00-22:00 od pátku do neděle">
+					</div>
+				</div>
 
-				<label for="field_trasa">Trasa pro pojízdný prodej (vymezená názvy ulic)</label>
-				<input class="u-full-width" id="field_trasa" type="text" name="trasa">
+				<label for="field_trasa">
+					Trasa pro pojízdný prodej
+					<i>
+						(vymezená názvy ulic)
+					</i>
+				</label>
+				<input class="u-full-width" id="field_trasa" type="text" name="trasa" placeholder="např. na celém Staroměstském náměstí">
 
-				<label for="field_druh_zbozi">Druh prodávaného zboží (sortiment) nebo poskytované služby</label>
-				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi">
+				<label for="field_druh_zbozi">
+					Druh prodávaného zboží
+					<i>
+						(sortiment)
+					</i>
+					nebo poskytované služby</label>
+				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi" placeholder="např. sezónní ovoce a zelenina, v zimě med a uzeniny">
 
-				<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
-				<input class="u-full-width" id="field_termin" type="text" name="termin">
+				<div class="row">
+					<div class="two-thirds column">
+						<label for="field_termin">Termín provozu</label>
+						<input class="u-full-width" id="field_termin" type="text" name="termin" placeholder="např. příležitostně, anebo celoročně, anebo 1.5.-31.10, anebo dva týdny před Vánoci">
+					</div>
+				</div>
+				<!--	/.row	-->
 			</fieldset>
 		</div>
 
@@ -273,149 +331,148 @@
 
 		<div class="container">
 			<fieldset>
-				<legend>Navrhovatel</legend>
-				<label for="field_jmeno">Příjmení a jméno</label>
-				<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
 
-				<label for="field_firma">Obchodní firma/název</label>
-				<input class="u-full-width" id="field_firma" type="text" name="firma">
+				<div class="row">
+					<div class="four columns">
+						<legend>4. Vaše údaje</legend>
+					</div>
 
-				<label for="field_adresa">Sídlo/doručovací adresa</label>
-				<input class="u-full-width" id="field_adresa" type="text" name="adresa">
+					<div class="four columns h-i h-i-udaje">
+						<i>
+							jako navrhovatele změny
+						</i>
+					</div>
+				</div>
 
-				<label for="field_ico">Identifikační číslo</label>
-				<input class="u-full-width" id="field_ico" type="text" name="ico">
+				<div class="row">
+					<div class="one-third column">
+						<label for="field_prijmeni">Příjmení</label>
+						<input class="u-full-width" id="field_prijmeni" type="text" name="prijmeni">
+					</div>
 
-				<label for="field_tel">Telefon/elektronická adresa</label>
-				<input class="u-full-width" id="field_tel" type="text" name="tel">
-			</fieldset>
-			<input class="u-full-width" class="button-primary" type="submit" value="Odeslat">
-		</div>
-		<!--	/.container	-->
-		</form>
+					<div class="one-third column">
+						<label for="field_jmeno">Jméno</label>
+						<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
+					</div>
+				</div>
 
+				<div class="row">
+					<div class="one-half column">
+						<label for="field_firma">
+							Název firmy
+							<i>
+								nepovinné
+							</i>
+						</label>
+						<input class="u-full-width" id="field_firma" type="text" name="firma">
+					</div>
+				</div>
 
-
-
-
-		<form action="/zadost" method="POST" class="container">
-
-			<fieldset>
-				<legend>Tržní řád</legend>
+				<h3 class="mt-2">
+					Sídlo
+				</h3>
 
 				<div class="row">
 					<div class="columns five">
-						<label for="field_typ">Návrh na zařazení</label>
-						<select name="typ">
-							<option value="tržnice">tržnice </option>
-							<option value="tržiště">tržiště</option>
-							<option value="tržní">tržní místo</option>
-							<option value="trh">trh</option>
-							<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
-							<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
-							<option value="předsunuté">předsunuté prodejní místo</option>
-							<option value="místo">místo pro nabídku prodeje zboží</option>
-							<option value="místo">místo pro nabídku služby</option>
-							<option value="ostatní">ostatní</option>
-						</select>
+						<label for="field_sidlo-ulice">Název ulice</label>
+						<input class="u-full-width" id="field_sidlo-ulice" type="text" name="ulice">
 					</div>
-					<div class="columns three">
-						<label for="field_typ_ostatni">Ostatní</label>
-						<input class="u-full-width" type="text" name="typ_ostatni">
-					</div>
-				</div>
-			</fieldset>
 
-
-
-
-
-			<fieldset id="fieldset-address">
-				<legend>Adresa místa (
-					<a href="#" onclick="javascript:toggle(this, 'fieldset-trail')">pojízdný prodej?</a>)</legend>
-				<div class="row">
-					<div class="columns four">
-						<label for="field_ulice">Ulice</label>
-						<input class="u-full-width" id="field_ulice" type="text" name="ulice">
-					</div>
 					<div class="columns two">
-						<label for="field_cp">č.p.</label>
-						<input class="u-full-width" id="field_cp" type="text" name="cp">
+						<label for="field_sidlo-cp">Číslo popisné</label>
+						<input class="u-full-width" id="field_sidlo-cp" type="text" name="cp">
 					</div>
+
 					<div class="columns two">
-						<label for="field_co">č.o</label>
-						<input class="u-full-width" id="field_co" type="text" name="co">
-					</div>
-					<div class="columns two">
-						<label for="field_co">Městská část</label>
-						<input class="u-full-width" id="field_mestska_cast" type="text" name="mestska_cast" placeholder="Praha 2">
+						<label for="field_sidlo-co">Číslo orientační</label>
+						<input class="u-full-width" id="field_sidlo-co" type="text" name="co">
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="columns three">
-						<label for="field_parcelni_cislo">Parcelní číslo</label>
-						<input class="u-full-width" id="field_parcelni_cislo" type="text" name="parcelni_cislo">
+						<label for="field_sidlo-mesto">Město</label>
+						<input class="u-full-width" id="field_sidlo-mesto" type="text" name="co" placeholder="stačí např. Praha">
 					</div>
-					<div class="columns three">
-						<label for="field_velikost">Velikost místa (m
-							<sup>2</sup>)</label>
-						<input class="u-full-width" id="field_velikost" type="text" name="velikost">
+
+					<div class="columns two">
+						<label for="field_sidlo-psc">PSČ</label>
+						<input class="u-full-width" id="field_sidlo-psc" type="text" name="psc" placeholder="např. 841&thinsp;05">
 					</div>
 				</div>
+
+				<div class="row mt-2">
+					<div class="four columns">
+						<h3>
+							Doručovací adresa
+						</h3>
+					</div>
+
+					<div class="four columns h-i h-i-adresa">
+						<i>
+							(vyplňte jen pokud je jiná než sídlo)
+						</i>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="columns five">
+						<label for="field_dorucovaci-ulice">Název ulice</label>
+						<input class="u-full-width" id="field_dorucovaci-ulice" type="text" name="ulice">
+
+					</div>
+
+					<div class="columns two">
+						<label for="field_dorucovaci-cp">Číslo popisné</label>
+						<input class="u-full-width" id="field_dorucovaci-cp" type="text" name="cp">
+					</div>
+
+					<div class="columns two">
+						<label for="field_dorucovaci-co">Číslo orientační</label>
+						<input class="u-full-width" id="field_dorucovaci-co" type="text" name="co">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="columns three">
+						<label for="field_dorucovaci-mesto">Město</label>
+						<input class="u-full-width" id="field_dorucovaci-mesto" type="text" name="co" placeholder="stačí např. Praha">
+					</div>
+
+					<div class="columns two">
+						<label for="field_dorucovaci-psc">PSČ</label>
+						<input class="u-full-width" id="field_dorucovaci-psc" type="text" name="psc" placeholder="např. 841&thinsp;05">
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="two column">
+						<label for="field_ico">IČO</label>
+						<input class="u-full-width" id="field_ico" type="text" name="ico">
+					</div>
+				</div>
+
+				<div class="row mt-2">
+					<div class="two columns">
+						<label for="field_tel">Telefon</label>
+						<input class="u-full-width" id="field_tel" type="text" name="tel">
+					</div>
+
+					<div class="three columns">
+						<label for="field_mail">E&ndash;mail</label>
+						<input class="u-full-width" id="field_mail" type="text" name="mail">
+					</div>
+				</div>
+
 			</fieldset>
 
-
-
-
-
-			<fieldset id="fieldset-trail" style="display:none">
-				<legend>Pojízdný prodej (
-					<a href="#" onclick="toggle(this, 'fieldset-address')">stánek?</a>)</legend>
-				<label for="field_trasa">Trasa (vymezená názvy ulic)</label>
-				<input class="u-full-width" id="field_trasa" type="text" name="trasa">
-			</fieldset>
-
-
-
-
-
-			<fieldset>
-				<legend>Druh prodeje</legend>
-				<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
-				<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni">
-				<label for="field_doba">Prodejní doba</label>
-				<input class="u-full-width" id="field_doba" type="text" name="doba">
-
-				<label for="field_druh_zbozi">Druh prodávaného zboží (sortiment) nebo poskytované služby</label>
-				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi">
-				<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
-				<input class="u-full-width" id="field_termin" type="text" name="termin">
-			</fieldset>
-
-
-
-
-
-			<fieldset>
-				<legend>Navrhovatel</legend>
-				<label for="field_jmeno">Příjmení a jméno</label>
-				<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
-				<label for="field_firma">Obchodní firma/název</label>
-				<input class="u-full-width" id="field_firma" type="text" name="firma">
-				<label for="field_adresa">Sídlo/doručovací adresa</label>
-				<input class="u-full-width" id="field_adresa" type="text" name="adresa">
-				<label for="field_ico">Identifikační číslo</label>
-				<input class="u-full-width" id="field_ico" type="text" name="ico">
-				<label for="field_tel">Telefon/elektronická adresa</label>
-				<input class="u-full-width" id="field_tel" type="text" name="tel">
-			</fieldset>
-
-			<input type="hidden" name="polygon" id="field_polygon" value="" />
-
+			<p class="mt-4">
+				Žádost se odešle na Odbor živnostenský a občanskosprávní Magistrátu HM Prahy. Následně budete vyrozumeni e&ndash;mailem.
+			</p>
 			<input class="u-full-width button button-primary" type="submit" value="Odeslat žádost">
+		</div>
+		<!--	/.container	-->
 		</form>
-
 	</main>
 </body>
 

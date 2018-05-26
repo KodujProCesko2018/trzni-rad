@@ -4,13 +4,22 @@ body {
     margin: 0 0 5rem 0;
 }
 
-.container {
+.container,
+.mt-4 {
     margin-top: 4rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.ml-0 {
+    margin-left: 0;
 }
 
 .map {
     height: 400px;
-    background: #c0ffee;
+    background: transparent;
 }
 
 .button,
@@ -72,3 +81,33 @@ legend {
 .sup {
     margin-left: -4px;
 }
+
+fieldset label i {
+    font-weight: 400;
+}
+
+input[type="number"] {
+    text-align: end;
+}
+
+.h-i {
+    margin-top: 2rem;
+}
+
+.h-i-adresa {
+    margin-left: -20px;
+    /* TODO: ugly hack */
+}
+
+.h-i-udaje {
+    margin-left: -80px;
+}
+
+/* 
+.one.column.lg-ico-wrap {
+    margin-left: -20px;
+    margin-top: -20px;
+}
+.lg-ico {
+    font-size: 5rem;
+} */
