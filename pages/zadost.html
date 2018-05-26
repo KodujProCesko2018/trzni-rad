@@ -55,6 +55,10 @@
 				&#11164; Zpátky
 			</a>
 
+
+
+
+
 			<form action="/zadost" method="POST">
 				<fieldset>
 					<legend>Tržní řád</legend>
@@ -74,8 +78,29 @@
 					<label for="field_typ_ostatni">Ostatní</label>
 					<input class="u-full-width" type="text" name="typ_ostatni">
 				</fieldset>
+
+
+
+
+
 				<fieldset>
 					<legend>Adresa místa</legend>
+
+
+
+
+					<div id="map" class="map u-max-full-width">
+						<div class="container">
+							<h1>
+								Insert map
+							</h1>
+						</div>
+					</div>
+
+
+
+
+
 					<div class="row">
 						<div class="columns five">
 							<label for="field_ulice">Ulice</label>
@@ -118,6 +143,10 @@
 					<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
 					<input class="u-full-width" id="field_termin" type="text" name="termin">
 				</fieldset>
+
+
+
+
 				<fieldset>
 					<legend>Navrhovatel</legend>
 					<label for="field_jmeno">Příjmení a jméno</label>
@@ -164,6 +193,10 @@
 					</div>
 				</fieldset>
 
+
+
+
+
 				<fieldset id="fieldset-address">
 					<legend>Adresa místa (
 						<a href="#" onclick="javascript:toggle(this, 'fieldset-trail')">pojízdný prodej?</a>)</legend>
@@ -199,12 +232,20 @@
 					</div>
 				</fieldset>
 
+
+
+
+
 				<fieldset id="fieldset-trail" style="display:none">
 					<legend>Pojízdný prodej (
 						<a href="#" onclick="toggle(this, 'fieldset-address')">stánek?</a>)</legend>
 					<label for="field_trasa">Trasa (vymezená názvy ulic)</label>
 					<input class="u-full-width" id="field_trasa" type="text" name="trasa">
 				</fieldset>
+
+
+
+
 
 				<fieldset>
 					<legend>Druh prodeje</legend>
@@ -218,6 +259,10 @@
 					<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
 					<input class="u-full-width" id="field_termin" type="text" name="termin">
 				</fieldset>
+
+
+
+
 
 				<fieldset>
 					<legend>Navrhovatel</legend>
