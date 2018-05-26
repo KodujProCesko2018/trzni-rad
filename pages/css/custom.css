@@ -6,3 +6,8 @@ body {
 .container {
     margin-top: 4rem;
 }
+
+.map {
+    height: 400px;
+    background: #c0ffee;
+}
