@@ -5,6 +5,7 @@ Nejdřív je nutné zkompilovat zdrojový kód
 -  nainstaluj si Go
 -  nainstaluj si nezbytné knihovny
 -  `go get github.com/rakyll/statik`
+-  přidej si $GOPATH/bin do PATH (export PATH=$GOPATH/bin:$PATH) abys mohl pustit statik odkudkoliv
 -  `go get github.com/tealeg/xlsx`
 -  zjisti si hodnotu proměnné GOPATH (příkazem $ go env GOPATH)
 -  vyexportuj si ji `export GOPATH=$(go env GOPATH)`
