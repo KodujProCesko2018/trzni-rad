@@ -9,4 +9,4 @@ _Repo pro vývoj konceptu na hackathonu Kóduj pro Česko 2018_
 [server](/server)
 
 ## Prezentace
-[na slides.com](https://slides.com/dugi/deck-5/edit)
+[na slides.com](https://slides.com/dugi/deck-5/)
