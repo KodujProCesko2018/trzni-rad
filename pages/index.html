@@ -19,7 +19,7 @@
 
 	<!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<!--<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>-->
 
 	<!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -39,59 +39,104 @@
 
 <body>
 
-	<h1>
-		Prodej mimo provozovnu
-	</h1>
+	<main class="container">
 
-	<h3>
-		V Praze možno mimo provozovnu prodávat zboží nebo služby jen na místech zařazených do
-	</h3>
+		<div class="row">
+			<div class="two-thirds column">
+				<h1>
+					Prodej mimo provozovnu
+				</h1>
 
-	<h2>
-		Tržního řádu
-	</h2>
+				<p>
+					V Praze možno mimo provozovnu prodávat zboží nebo služby jen na místech zařazených do
+				</p>
 
-	<p>
-		A to:
-		<ul>
-			<li>
-				tržnicích
-				<i>
-					&nbsp;(většinou kryté budovy)
-				</i>
-			</li>
+				<h2>
+					Tržního řádu
+				</h2>
 
-			<li>
-				tržištích
-				<i>
-					&nbsp;(většinou exteriér)
-				</i>
-			</li>
+				<p>
+					A to:
+					<ul>
+						<li>
+							tržnicích,
+							<i>
+								většinou kryté budovy
+							</i>
+						</li>
 
-			<li>
-				tržních místech
-				<i>
-					&nbsp;(většinou samostatní místa pro několik málo stánků)
-				</i>
-			</li>
+						<li>
+							tržištích,
+							<i>
+								většinou exteriér
+							</i>
+						</li>
 
-			<li>
-				restauračních zahrádkách
-			</li>
+						<li>
+							tržních místech,
+							<i>
+								většinou samostatní místa pro několik málo stánků
+							</i>
+						</li>
 
-			<li>
-				předsunutých prodejních místech
-				<i>
-					&nbsp;(většinou součást kamenného obchodu)
-				</i>
-			</li>
-		</ul>
-	</p>
+						<li>
+							restauračních zahrádkách
+						</li>
 
-	<h2>
+						<li>
+							předsunutých prodejních místech,
+							<i>
+								většinou součást kamenného obchodu
+							</i>
+						</li>
+					</ul>
+				</p>
+			</div>
+			<!--	/.column	-->
+		</div>
+		<!--	/.row	-->
 
-	</h2>
 
-	<input class="button-primary" value="Zažádat" type="button">
+
+
+		<div class="row">
+			<div class="two-thirds column">
+				<h2>
+					Omezení
+				</h2>
+
+				<div class="row">
+					Na jakýkoliv prodej
+					<i>
+						mimo provozovnu
+					</i>
+					potřebujete
+					<b>
+						zábor,
+					</b>
+					o který požádáte u Vaší
+					<label for="mestskeCasti">
+						městké části
+					</label>
+
+					<select id="mestskeCasti" class="one-third column">
+						<option value="Option 1">Praha 1</option>
+						<option value="Option 2">Praha 2</option>
+						<option value="Option 3">etc.</option>
+					</select>
+				</div>
+				<!--	/.row		-->
+
+			</div>
+			<!--		./column	-->
+		</div>
+		<!--	/.row		-->
+
+		<div class="row">
+			<input class="button-primary" value="Zažádat" type="button">
+		</div>
+
+	</main>
+	<!--		/.container		-->
 
 </body>
