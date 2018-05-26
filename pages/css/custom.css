@@ -1,0 +1,30 @@
+body {
+    font-family: sans-serif;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.container {
+    margin-top: 4rem;
+}
+
+.map {
+    height: 400px;
+    background: #c0ffee;
+}
+
+.container a,
+.button,
+button,
+.u-full-width.button.button-primary {
+    padding: 5px 30px;
+    font-size: 1.6rem;
+    height: 5rem;
+}
+
+legend {
+    /* = h2 ze skeletonu */
+    font-size: 3.6rem;
+    line-height: 1.25;
+    letter-spacing: -.1rem;
+}
