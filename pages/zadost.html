@@ -46,49 +46,50 @@
 
 	</script>
 
-        <script>
-            var drawnItems = null;
+	<script>
+		var drawnItems = null;
 
-            function updateGeometry() {
-                var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
-                console.log(geojsonToBeSentToBE);
-                // set value in the form
-                document.getElementById("field_multipolygon").value = geojsonToBeSentToBE;
-            }
+		function updateGeometry() {
+			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+			console.log(geojsonToBeSentToBE);
+			// set value in the form
+			document.getElementById("field_multipolygon").value = geojsonToBeSentToBE;
+		}
 
-            function initDrawing() {
-                // drawing stuff
-                drawnItems = L.featureGroup().addTo(map);
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
 
-                map.addControl(new L.Control.Draw({
-                    draw: {
-                        circle : false,
-                        polyline: false,
-                        rectangle: false,
-                        marker: false,
-                        circlemarker: false,
-                        polygon: {
-                            allowIntersection: false,
-                            showArea: true
-                        }
-                    },
-                        edit: {
-                            featureGroup: drawnItems,
-                            poly: {
-                                allowIntersection: false
-                        }
-                    }
-                }));
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
+				}
+			}));
 
-                map.on(L.Draw.Event.CREATED, function (event) {
-                    drawnItems.addLayer(event.layer);
-                    updateGeometry();
-                });
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
 
-                map.on(L.Draw.Event.EDITED, updateGeometry);
-                map.on(L.Draw.Event.DELETED, updateGeometry);
-            }
-        </script>
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
+
+	</script>
 </head>
 
 <body onload="initMap(); initDrawing()">
@@ -123,33 +124,37 @@
 
 		<form action="/zadost" method="POST" class="container">
 
-			<fieldset class="row">
+			<fieldset>
 
 				<legend>Návrh na</legend>
 
-				<div class="one-half column">
-					<select name="typ">
-						<option value="zařazení">zařazení </option>
-						<option value="vyřazení">vyřazení</option>
-						<option value="změnu (místa, sortimentu, &hellip;)">změnu (místa, sortimentu, &hellip;)</option>
-					</select>
+				<div class="row">
+					<div class="one-third column">
+						<select name="typ" class="u-full-width">
+							<option value="zařazení">zařazení </option>
+							<option value="vyřazení">vyřazení</option>
+							<option value="změnu (místa, sortimentu, &hellip;)">změnu (místa, sortimentu,&hellip;)</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="one-half column">
-					<select name="typ">
-						<option value="tržnice">tržnice </option>
-						<option value="tržiště">tržiště</option>
-						<option value="tržní">tržní místo</option>
-						<option value="trh">trh</option>
-						<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
-						<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
-						<option value="předsunuté">předsunuté prodejní místo</option>
-						<option value="místo">místo pro nabídku prodeje zboží</option>
-						<option value="místo">místo pro nabídku služby</option>
-						<option value="ostatní">ostatní</option>
-					</select>
-				</div>
 
+				<div class="row">
+					<div class="one-half column">
+						<select name="typ">
+							<option value="tržnice">tržnice </option>
+							<option value="tržiště">tržiště</option>
+							<option value="tržní">tržní místo</option>
+							<option value="trh">trh</option>
+							<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
+							<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
+							<option value="předsunuté">předsunuté prodejní místo</option>
+							<option value="místo">místo pro nabídku prodeje zboží</option>
+							<option value="místo">místo pro nabídku služby</option>
+							<option value="ostatní">ostatní</option>
+						</select>
+					</div>
+				</div>
 			</fieldset>
 
 
