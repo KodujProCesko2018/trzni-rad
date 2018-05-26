@@ -39,7 +39,9 @@ function initMap() {
     map = L.map('map').setView([50.08, 14.415], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaG9ya3lsYWRpc2xhdiIsImEiOiJjaXVwbTZraGgwMDNmMnlwazE5c2wxazZpIn0.vPPHzOu544kRuJ6j8zml2g', {
-        attribution: '&copy; Mapbox, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; Mapbox, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 22,
+        maxNativeZoom: 20
     }).addTo(map);;
 
     //get the vector data

@@ -54,7 +54,7 @@
 			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
 			console.log(geojsonToBeSentToBE);
 			// set value in the form
-			document.getElementById("field_multipolygon").value = geojsonToBeSentToBE;
+			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
 		}
 
 		function initDrawing() {
@@ -389,7 +389,7 @@
 				<input class="u-full-width" id="field_tel" type="text" name="tel">
 			</fieldset>
 
-			<input type="hidden" name="multipolygon" id="field_multipolygon" value="" />
+			<input type="hidden" name="polygon" id="field_polygon" value="" />
 
 			<input class="u-full-width button button-primary" type="submit" value="Odeslat žádost">
 		</form>
