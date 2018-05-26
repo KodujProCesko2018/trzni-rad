@@ -122,10 +122,8 @@
 
 
 
-
-		<form action="/zadost" method="POST">
-			<div class="container">
-
+		<div class="container">
+			<form action="/zadost" method="POST">
 				<fieldset>
 					<legend>Návrh na</legend>
 
@@ -162,20 +160,21 @@
 						</div>
 					</div>
 				</fieldset>
+		</div>
+		<!--	/.container	-->
 
 
 
 
 
-				<fieldset>
-					<legend>Adresa místa</legend>
+		<fieldset>
+			<div class="container">
+				<legend>Adresa místa</legend>
 
-					<p>
-						Adresu můžete zvolit nakreslením polygonu na mapě, nebo vyplnit textem níž.
-					</p>
-
+				<p>
+					Adresu můžete zvolit nakreslením polygonu na mapě, nebo vyplnit textem níž.
+				</p>
 			</div>
-			<!--	/.container	-->
 
 
 
@@ -189,7 +188,6 @@
 
 
 			<div class="container">
-
 				<div class="row">
 					<div class="columns five">
 						<label for="field_ulice">Název ulice</label>
@@ -222,14 +220,35 @@
 							<sup class="sup">2</sup>
 						</span>
 					</div>
+
+					<div class="columns three offset-by-one">
+						<label for="field_pocet">Počet prodejních míst v něm</label>
+						<input id="field_pocet" type="number" name="pocet" value="1">
+					</div>
 				</div>
 
 				<div class="row">
-					<div class="twelve columns">
-						<label for="field_upresneni">Další upřesnění umístění</label>
-						<input class="u-full-width" id="field-upresneni" type="text" name="upresneni">
-					</div>
+					<label for="field_upresneni">
+						Další upřesnění umístění
+						<i>
+							(vyplňte jen pokud je to nutné)
+						</i>
+					</label>
+					<textarea rows="1" cols="" class="u-full-width" id="field-upresneni" type="text" name="upresneni"></textarea>
 				</div>
+			</div>
+			<!--	/.container	-->
+		</fieldset>
+
+
+
+
+
+		<div class="container">
+			<fieldset>
+				<legend>
+					Prodejní doba a zboží
+				</legend>
 
 				<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
 				<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni">
@@ -245,31 +264,34 @@
 
 				<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
 				<input class="u-full-width" id="field_termin" type="text" name="termin">
-				</fieldset>
+			</fieldset>
+		</div>
 
 
 
 
-				<fieldset>
-					<legend>Navrhovatel</legend>
-					<label for="field_jmeno">Příjmení a jméno</label>
-					<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
 
-					<label for="field_firma">Obchodní firma/název</label>
-					<input class="u-full-width" id="field_firma" type="text" name="firma">
+		<div class="container">
+			<fieldset>
+				<legend>Navrhovatel</legend>
+				<label for="field_jmeno">Příjmení a jméno</label>
+				<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
 
-					<label for="field_adresa">Sídlo/doručovací adresa</label>
-					<input class="u-full-width" id="field_adresa" type="text" name="adresa">
+				<label for="field_firma">Obchodní firma/název</label>
+				<input class="u-full-width" id="field_firma" type="text" name="firma">
 
-					<label for="field_ico">Identifikační číslo</label>
-					<input class="u-full-width" id="field_ico" type="text" name="ico">
+				<label for="field_adresa">Sídlo/doručovací adresa</label>
+				<input class="u-full-width" id="field_adresa" type="text" name="adresa">
 
-					<label for="field_tel">Telefon/elektronická adresa</label>
-					<input class="u-full-width" id="field_tel" type="text" name="tel">
-				</fieldset>
-				<input class="u-full-width" class="button-primary" type="submit" value="Odeslat">
-			</div>
-			<!--	/.container	-->
+				<label for="field_ico">Identifikační číslo</label>
+				<input class="u-full-width" id="field_ico" type="text" name="ico">
+
+				<label for="field_tel">Telefon/elektronická adresa</label>
+				<input class="u-full-width" id="field_tel" type="text" name="tel">
+			</fieldset>
+			<input class="u-full-width" class="button-primary" type="submit" value="Odeslat">
+		</div>
+		<!--	/.container	-->
 		</form>
 
 
