@@ -21,3 +21,10 @@ button,
     font-size: 1.6rem;
     height: 5rem;
 }
+
+legend {
+    /* = h2 ze skeletonu */
+    font-size: 3.6rem;
+    line-height: 1.25;
+    letter-spacing: -.1rem;
+}
