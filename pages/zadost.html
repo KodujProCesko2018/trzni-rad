@@ -47,6 +47,8 @@
 	</script>
 
 	<script>
+		var drawnItems = null;
+
 		function updateGeometry() {
 			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
 			console.log(geojsonToBeSentToBE);
@@ -54,41 +56,43 @@
 			document.getElementById("filed_multipolygon").value = geojsonToBeSentToBE;
 		}
 
-		// drawing stuff
-		drawnItems = L.featureGroup().addTo(map);
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
 
-		map.addControl(new L.Control.Draw({
-			draw: {
-				circle: false,
-				polyline: false,
-				rectangle: false,
-				marker: false,
-				circlemarker: false,
-				polygon: {
-					allowIntersection: false,
-					showArea: true
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
 				}
-			},
-			edit: {
-				featureGroup: drawnItems,
-				poly: {
-					allowIntersection: false
-				}
-			}
-		}));
+			}));
 
-		map.on(L.Draw.Event.CREATED, function (event) {
-			drawnItems.addLayer(event.layer);
-			updateGeometry();
-		});
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
 
-		map.on(L.Draw.Event.EDITED, updateGeometry);
-		map.on(L.Draw.Event.DELETED, updateGeometry);
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
 
 	</script>
 </head>
 
-<body onload="initMap();">
+<body onload="initMap(); initDrawing()">
 
 	<main>
 
