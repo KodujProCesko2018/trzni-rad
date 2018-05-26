@@ -12,3 +12,12 @@ body {
     height: 400px;
     background: #c0ffee;
 }
+
+.container a,
+.button,
+button,
+.u-full-width.button.button-primary {
+    padding: 5px 30px;
+    font-size: 1.6rem;
+    height: 5rem;
+}
