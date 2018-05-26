@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
     font-size: 1.6rem;
-    margin: 0;
+    margin: 0 0 5rem 0;
 }
 
 .container {
@@ -27,4 +27,41 @@ legend {
     font-size: 3.6rem;
     line-height: 1.25;
     letter-spacing: -.1rem;
+}
+
+.upload2.icon {
+    color: #000;
+    position: absolute;
+    margin-left: 8px;
+    margin-top: 12px;
+    width: 11px;
+    height: 11px;
+    border: solid 1px currentColor;
+    border-radius: 1px;
+    transform: rotate(90deg);
+}
+
+.upload2.icon:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    width: 1px;
+    height: 10px;
+    background-color: currentColor;
+    border-left: solid 3px white;
+    border-right: solid 3px white;
+}
+
+.upload2.icon:after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    width: 4px;
+    height: 4px;
+    border-top: solid 1px currentColor;
+    border-right: solid 1px currentColor;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
