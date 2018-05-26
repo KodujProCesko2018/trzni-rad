@@ -20,6 +20,7 @@ var zadostFieldName = []string{
 	"typ", "typ_ostatni", "ulice", "cp", "co", "mestska_cast",
 	"parcelni_cislo", "velikost", "druh_zarizeni", "doba", "trasa",
 	"druh_zbozi", "termin", "jmeno", "firma", "adresa", "ico", "tel",
+	"polygon",
 }
 var zadostFieldTitle = []string{
 	"Návrh na zařazení", "Ostatní", "Ulice", "č.p.", "č.o", "Městská část",
@@ -27,6 +28,7 @@ var zadostFieldTitle = []string{
 	"Trasa pro pojízdný prodej (vymezená názvy ulic)", "Druh prodávaného zboží (sortiment) nebo poskytované služby",
 	"Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )", "Příjmení a jméno",
 	"Obchodní firma/název", "Sídlo/doručovací adresa", "Identifikační číslo", "Telefon/elektronická adresa",
+	"GEO polygon",
 }
 
 var statikFS http.FileSystem
