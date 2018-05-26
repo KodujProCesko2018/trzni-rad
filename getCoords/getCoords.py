@@ -69,9 +69,12 @@ for i, record in enumerate(address_list):
 
         if uri:
             if getCoordsFromAddress(uri):
-                feature['geometry']['coordinates'].append(getCoordsFromAddress(uri))
+                coords = getCoordsFromAddress(uri).split(" ")
+
             elif getCoordsFromAddress(uri2):
-                feature['geometry']['coordinates'].append(getCoordsFromAddress(uri2))
+                coords = getCoordsFromAddress(uri2).split(" ")
+            feature['geometry']['coordinates'].append(float(coords[0]))
+            feature['geometry']['coordinates'].append(float(coords[1]))
 
         elif cislo_parcely:
             getCoordsFromParcel(uri)
