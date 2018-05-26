@@ -20,6 +20,7 @@ var zadostFieldName = []string{
 	"typ", "typ_ostatni", "ulice", "cp", "co", "mestska_cast",
 	"parcelni_cislo", "velikost", "druh_zarizeni", "doba", "trasa",
 	"druh_zbozi", "termin", "jmeno", "firma", "adresa", "ico", "tel",
+	"polygon",
 }
 var zadostFieldTitle = []string{
 	"Návrh na zařazení", "Ostatní", "Ulice", "č.p.", "č.o", "Městská část",
@@ -27,6 +28,7 @@ var zadostFieldTitle = []string{
 	"Trasa pro pojízdný prodej (vymezená názvy ulic)", "Druh prodávaného zboží (sortiment) nebo poskytované služby",
 	"Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )", "Příjmení a jméno",
 	"Obchodní firma/název", "Sídlo/doručovací adresa", "Identifikační číslo", "Telefon/elektronická adresa",
+	"GEO polygon",
 }
 
 var statikFS http.FileSystem
@@ -74,17 +76,26 @@ func main() {
 		muxer = http.NewServeMux()
 		host  string
 		port  int
+		debug bool
 		err   error
 	)
 	flag.StringVar(&host, "host", "localhost", "Hostname to listen at (default localhost)")
 	flag.IntVar(&port, "port", 8080, "Port to listen to (default 8080)")
+	flag.BoolVar(&debug, "debug", false, "Debug server statics from local folder")
+	flag.Parse()
 
 	statikFS, err = fs.New()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	muxer.Handle("/", http.FileServer(statikFS))
+	if debug == true {
+		log.Println("Serving from File System folder ../pages/")
+		muxer.Handle("/", http.FileServer(http.Dir("../pages/")))
+	} else {
+		log.Println("Serving embedded static! Did you update them by $ statik -src ../pages ?")
+		muxer.Handle("/", http.FileServer(statikFS))
+	}
 	muxer.HandleFunc("/geojson", readGeoJSON)
 	muxer.HandleFunc("/zadost", registerMarket)
 
