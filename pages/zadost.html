@@ -45,6 +45,46 @@
 		}
 
 	</script>
+
+        <script>
+            function updateGeometry() {
+                var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+                console.log(geojsonToBeSentToBE);
+                // set value in the form
+                document.getElementById("filed_multipolygon").value = geojsonToBeSentToBE;
+            }
+
+            // drawing stuff
+            drawnItems = L.featureGroup().addTo(map);
+
+            map.addControl(new L.Control.Draw({
+                draw: {
+                    circle : false,
+                    polyline: false,
+                    rectangle: false,
+                    marker: false,
+                    circlemarker: false,
+                    polygon: {
+                        allowIntersection: false,
+                        showArea: true
+                    }
+                },
+                    edit: {
+                        featureGroup: drawnItems,
+                        poly: {
+                            allowIntersection: false
+                    }
+                }
+            }));
+
+            map.on(L.Draw.Event.CREATED, function (event) {
+                drawnItems.addLayer(event.layer);
+                updateGeometry();
+            });
+
+            map.on(L.Draw.Event.EDITED, updateGeometry);
+            map.on(L.Draw.Event.DELETED, updateGeometry);
+        </script>
 </head>
 
 <body onload="initMap();">
@@ -301,7 +341,7 @@
 				<input class="u-full-width" id="field_tel" type="text" name="tel">
 			</fieldset>
 
-			<input type="hidden" name="polygon" id="field_polygon" value="" />
+			<input type="hidden" name="multipolygon" id="field_multipolygon" value="" />
 
 			<input class="u-full-width button button-primary" type="submit" value="Odeslat žádost">
 		</form>
