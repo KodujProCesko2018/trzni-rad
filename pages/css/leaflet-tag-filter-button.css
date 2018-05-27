@@ -4,7 +4,6 @@
     display: none;
     position: absolute;
     top:0px;
-    z-index: 1000;
     padding-bottom: 10px;
     padding-left: 5px;
 }
@@ -137,10 +136,6 @@
 }
 .leaflet-bar .tag-filter-tags-container ::-webkit-scrollbar-thumb:hover {
     background:#7d7d7d;
-}
-
-.tag-filter-tags-container .ripple {
-  z-index: 1000;
 }
 
 #map > div.leaflet-control-container > div.leaflet-top.leaflet-left > div.leaflet-bar.easy-button-container.leaflet-control > button {
