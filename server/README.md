@@ -1,14 +1,18 @@
-# Jak spustit server
+# Server pro tržní řád
 
-Nejdřív je nutné zkompilovat zdrojový kód
+Server slouží v první řadě jako backend pro formulář, jehož obsah uloží do Excelové tabulky vedle binarky serveru. Dále se stará o vydávání statických dat.
+
+# Jak spustit server 
+
+Původně pro Max, mělo by fungovat i pro win (vyzkoušeno) a Linux
 
 -  nainstaluj si Go
--  nainstaluj si nezbytné knihovny
--  `go get github.com/rakyll/statik`
+-  pokud je GOPATH prázdná a po odhlášení+prihlášení se neplní, nastav ji např. `export GOPATH=/home/<user>/.go`
 -  přidej si $GOPATH/bin do PATH (export PATH=$GOPATH/bin:$PATH) abys mohl pustit statik odkudkoliv
--  `go get github.com/tealeg/xlsx`
--  zjisti si hodnotu proměnné GOPATH (příkazem $ go env GOPATH)
--  vyexportuj si ji `export GOPATH=$(go env GOPATH)`
+-  vyexportuj si GOPATH pokud jeste neni `export GOPATH=$(go env GOPATH)`
+-  nainstaluj si nezbytné knihovny:
+ -  `go get github.com/rakyll/statik`
+ -  `go get github.com/tealeg/xlsx`
 -  vytvoř složku `mkdir $GOPATH/src/github.com/KodujProCesko2018`
 -  přesuň se tam `cd $GOPATH/src/github.com/KodujProCesko2018`
 -  naklonuj naše git repo `git clone https://github.com/KodujProCesko2018/trzni-rad.git`
@@ -32,6 +36,9 @@ Binárka potřebuje ke správnému fungování soubor "trzni-rad.geojson".
 Binárku lze spustit pomocí
 
 $ ./server
+$ ./server --debug 
+
+Druhy prikaz by mel automaticky servírovat změněné soubory.
 
 Nebo s parametry (pro produkční nasazení)
 
