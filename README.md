@@ -8,6 +8,16 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 
   1. Převod stávající tabulky alespoň částečně do prostorového formatu (GeoJson) a její vizualizace na webu.
   1. Elektronizace formuláře pro návrh na změnu přílohy tržního řádu a jeho obohacení o strojově zpracovatelnou prostorovou složku.
+  
+# High-level popis řešení
+
+* Původni tabulka z Wordu jsme pomocí R převedli do CSV
+* CSV bylo dale pomoci R vyčištěno - více [zde](data/README.md)
+* Tržním místům byly přes katastrální webovou službu v Pythonu přiřazeny souřadnice a byla vyexportována jako GeoJson - více [zde](getCoords/README.md)
+* Výsedný trzni-rad.geojson je servírován staticky se zbytkem webu přes server v GO.
+* Na webu je dotupná přehledovám mapa tržních míst, které se podařilo z dat vytěžit. Místa lze filtrovat přes typ prodávaného zboží a lze si zobrazit informace o prodejním místě.
+* Dále je na webu formulář pro návrh na změnu přílohy tržního řádu obsahující údaje nutné pro následné řízení a navíc mapu, kde žadatel tržní místo (místa) označí polygonem. 
+* Po odeslání formuláře jsou data uložena do xlsx tabulky na serveru, vyznačené polygony jsou uloženy v tabulce jako GeoJson string v souřadném systému EPSG:4326.
 
 ## Formulář
 

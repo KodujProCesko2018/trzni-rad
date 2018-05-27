@@ -17,9 +17,14 @@ body {
     margin-left: 0;
 }
 
-.map {
+.map1,
+.map2 {
     height: 400px;
     background: transparent;
+}
+
+.map1 {
+    height: 600px;
 }
 
 .button,
