@@ -1,6 +1,6 @@
 ### getCoords je python program, do kterého vstupuje modifikované CSV s adresami a který vrací geojson se souřadnicemi těchto objektů
 
-Modifikace CSV souboru je popsána v readme složky data. Modifikace extrahuje názvy ulic, adresní čísla, katastrální parcely a katastrální území z původního textu v .DOC tabulce, která je přílohou tržního řádu.
+Modifikace CSV souboru je popsána v readme složky [data](../data/README.md). Modifikace extrahuje názvy ulic, adresní čísla, katastrální parcely a katastrální území z původního textu v .DOC tabulce, která je přílohou tržního řádu.
 
 Program získává souřadnice ze služby WFS na základě parametrů ulice, číslo domovní, případně číslo orientační, nebo na základě pracelního čísla a čísla katastrálního území. Služba je poskytována Českým úřadem zeměměřickým a katastrálním, na základě dostupných parametrů je volána buď služba pro INSPIRE Adresy:
 
