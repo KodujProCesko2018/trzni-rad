@@ -100,68 +100,106 @@ get_katastralni_uzemi <- function(ulice_string, katastralni_uzemi_dt) {
 }
 
 
+annotate_druh_zbozi <- function(trzni_rad) {
+  trzni_rad[,tags := '']
+  
+  trzni_rad[grepl("Ovoc", druh_zbozi, ignore.case = T) |
+              grepl("Zelen", druh_zbozi, ignore.case = T) |
+              grepl("jahod", druh_zbozi, ignore.case = T) |
+              grepl("lesní", druh_zbozi, ignore.case = T) , tags := paste(tags, "Ovoce, Zelenina", sep = ';')]
+  trzni_rad[grepl("Farm", druh_zbozi, ignore.case = T) |
+              grepl("výpěstk", druh_zbozi, ignore.case = T) , tags := paste(tags, "Farmářské trhy", sep = ';')]
+  trzni_rad[grepl("Váno", druh_zbozi, ignore.case = T) , tags := paste(tags, "Vánoční trhy", sep = ';')]
+  trzni_rad[grepl("Veli", druh_zbozi, ignore.case = T) , tags := paste(tags, "Velikonoční trhy", sep = ';')]
+  trzni_rad[grepl("Dušič", druh_zbozi, ignore.case = T) , tags := paste(tags, "Dušičkové trhy", sep = ';')]
+  trzni_rad[grepl("Ryby", druh_zbozi, ignore.case = T) , tags := paste(tags, "Rybí trhy", sep = ';')]
+  trzni_rad[grepl("Půjčov", druh_zbozi, ignore.case = T) , tags := paste(tags, "Půjčovna", sep = ';')]
+  trzni_rad[grepl("upomínk", druh_zbozi, ignore.case = T) |
+              grepl("pohled", druh_zbozi, ignore.case = T) , tags := paste(tags, "Upomínkové předměty", sep = ';')]
+  trzni_rad[grepl("Zmrzlin", druh_zbozi, ignore.case = T) |
+              grepl("točen", druh_zbozi, ignore.case = T) , tags := paste(tags, "Zmrzlina", sep = ';')]
+  trzni_rad[grepl("občerstven", druh_zbozi, ignore.case = T) | 
+              grepl("káva", druh_zbozi, ignore.case = T) | 
+              grepl("grilovac", druh_zbozi, ignore.case = T) | 
+              grepl("nealkohol", druh_zbozi, ignore.case = T) , tags := paste(tags, "Občerstvení", sep = ';')]
+  trzni_rad[grepl('včetně alkohol', druh_zbozi, ignore.case = T) , tags := paste(tags, "Alkohol", sep = ';')]
+  trzni_rad[grepl("lodní lístky na vyhlídkové plavby", druh_zbozi, ignore.case = T) 
+            , tags := paste(tags, "lodní lístky na vyhlídkové plavby", sep = ';')]
+  trzni_rad[grepl("čištění peří", druh_zbozi, ignore.case = T) , tags := paste(tags, "Čištění peří", sep = ';')]
+  trzni_rad[grepl("tabák", druh_zbozi, ignore.case = T) , tags := paste(tags, "Tabák", sep = ';')]
+  trzni_rad[grepl("textil", druh_zbozi, ignore.case = T) , tags := paste(tags, "Textil", sep = ';')]
+  trzni_rad[grepl("květ", druh_zbozi, ignore.case = T) , tags := paste(tags, "Květiny", sep = ';')]
+  trzni_rad[grepl("^;", tags, ignore.case = T), tags := gsub("^;", '', tags)]
+  return(trzni_rad)
+  
+}
+
+
 
 etl <- function() {
-    data_path <- '../data'
-    trzni_rad <- fread(file.path(data_path, 'trzni_rad_plocha_zabor_v5.csv'), encoding = 'UTF-8')
-    streets_dt <- fread(file.path(data_path, 'Ulice20180525.csv'), encoding = 'UTF-8')
-    katastralni_uzemi_dt <- fread(file.path(data_path, 'katastralni_uzemi.csv'), encoding = 'UTF-8')
-    trzni_rad[,ulice := '']
-    
-    # streets[grepl('Náměstí Bratří', `Název ulice`, ignore.case = TRUE),]
-    
-    ## Extract streetname from freetext
-    for (i in 1:nrow(streets_dt)) {
-      street <- streets_dt[i, `Název ulice`]
-      trzni_rad[grepl(street,  gsub('k\\.[ ]*ú.*', '',  adresa), ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
-      if (grepl('nábřeží', street, ignore.case = TRUE)) {
-        street_short <- gsub('nábřeží', 'nábř.', street)
-        trzni_rad[grepl(street_short,  adresa, ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
-      }
-      if (grepl('náměstí', street, ignore.case = TRUE)) {
-        street_short <- gsub('náměstí', 'nám.', street)
-        trzni_rad[grepl(street_short,  adresa, ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
-      }
+  data_path <- '../data'
+  trzni_rad <- fread(file.path(data_path, 'v7_carky_lode_ctvti.csv'), encoding = 'UTF-8')
+  streets_dt <- fread(file.path(data_path, 'Ulice20180525.csv'), encoding = 'UTF-8')
+  katastralni_uzemi_dt <- fread(file.path(data_path, 'katastralni_uzemi.csv'), encoding = 'UTF-8')
+  trzni_rad[,ulice := '']
+  
+  # streets[grepl('Náměstí Bratří', `Název ulice`, ignore.case = TRUE),]
+  
+  ## Extract streetname from freetext
+  for (i in 1:nrow(streets_dt)) {
+    street <- streets_dt[i, `Název ulice`]
+    trzni_rad[grepl(street,  gsub('k\\.[ ]*ú.*', '',  adresa), ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
+    if (grepl('nábřeží', street, ignore.case = TRUE)) {
+      street_short <- gsub('nábřeží', 'nábř.', street)
+      trzni_rad[grepl(street_short,  adresa, ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
     }
-    trzni_rad[,ulice := gsub('^;', '', ulice)]
-    trzni_rad[,ulice := gsub(';$', '', ulice)]
-    
-    # streets_str <- trzni_rad[grepl('Malá Štupartská',ulice), ulice]
-    
-    for(i in 1:nrow(trzni_rad)) {
-      trzni_rad[i, ulice := filter_extracted_streets(ulice)]  
+    if (grepl('náměstí', street, ignore.case = TRUE)) {
+      street_short <- gsub('náměstí', 'nám.', street)
+      trzni_rad[grepl(street_short,  adresa, ignore.case = TRUE), ulice := paste(ulice, street, sep = ';')]
     }
-    
-    ## filter streets from extracted streetnames
-    
-    trzni_rad[ ulice!= '', .N]/ nrow(trzni_rad)
-    # View(trzni_rad[,list(adresa, ulice)])
-    
-    # trzni_rad[,ulice := substr(ulice, 2, nchar(ulice))]
-    write.csv(trzni_rad, '../data/trzni_rad_ulice_v1.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')   
-    
-    # str <- 'Podolské nábřeží u č. 3/1184 a 3/1185 - 3/1186, parc.č. 1130, 1131/1, 113'
-    
-    trzni_rad[, cislo_domu := get_cislo_domu(adresa)]
-    write.csv(trzni_rad, '../data/trzni_rad_cisdom_v2.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')   
-    
-    trzni_rad[grepl('parc', adresa), cislo_parcely := get_cislo_parcely(adresa, 'parc')]
-    trzni_rad[grepl('par\\.', adresa), cislo_parcely := get_cislo_parcely(adresa, 'par\\.')]
-    write.csv(trzni_rad, '../data/trzni_rad_cisdom_parc_v3.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
-    
-    for (i in 1:nrow(trzni_rad)) {
-      if (grepl('k\\.[ ]*ú', trzni_rad[i,adresa])) {
-        trzni_rad[i, ku := get_katastralni_uzemi(adresa, katastralni_uzemi_dt)]
-      }
+  }
+  trzni_rad[,ulice := gsub('^;', '', ulice)]
+  trzni_rad[,ulice := gsub(';$', '', ulice)]
+  
+  # streets_str <- trzni_rad[grepl('Malá Štupartská',ulice), ulice]
+  
+  for(i in 1:nrow(trzni_rad)) {
+    trzni_rad[i, ulice := filter_extracted_streets(ulice)]  
+  }
+  
+  ## filter streets from extracted streetnames
+  
+  trzni_rad[ ulice!= '', .N]/ nrow(trzni_rad)
+  # View(trzni_rad[,list(adresa, ulice)])
+  
+  # trzni_rad[,ulice := substr(ulice, 2, nchar(ulice))]
+  write.csv(trzni_rad, '../data/trzni_rad_ulice_v1.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')   
+  
+  # str <- 'Podolské nábřeží u č. 3/1184 a 3/1185 - 3/1186, parc.č. 1130, 1131/1, 113'
+  
+  trzni_rad[, cislo_domu := get_cislo_domu(adresa)]
+  write.csv(trzni_rad, '../data/trzni_rad_cisdom_v2.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')   
+  
+  trzni_rad[grepl('parc', adresa), cislo_parcely := get_cislo_parcely(adresa, 'parc')]
+  trzni_rad[grepl('par\\.', adresa), cislo_parcely := get_cislo_parcely(adresa, 'par\\.')]
+  write.csv(trzni_rad, '../data/trzni_rad_cisdom_parc_v3.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
+  
+  for (i in 1:nrow(trzni_rad)) {
+    if (grepl('k\\.[ ]*ú', trzni_rad[i,adresa])) {
+      trzni_rad[i, ku := get_katastralni_uzemi(adresa, katastralni_uzemi_dt)]
     }
-    
+  }
+
+  
     trzni_rad[is.na(ulice), ulice := '']
     trzni_rad[is.na(ku), ku := '']
+    trzni_rad[is.na(cislo_ku), cislo_ku := '']
     trzni_rad[is.na(cislo_domu), cislo_domu := '']
     trzni_rad[is.na(cislo_parcely), cislo_parcely := '']
-    
-    write.csv(trzni_rad, '../data/trzni_rad_cisdom_parc_zabor_ku_v6.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
-    View(trzni_rad[grepl(';', ulice),list(adresa, ulice, cislo_domu, cislo_parcely, ku)])
+  
+  
+  write.csv(trzni_rad, '../data/trzni_rad_cisdom_parc_zabor_ku_v8.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
+  # View(trzni_rad[grepl(';', ulice),list(adresa, ulice, cislo_domu, cislo_parcely, ku)])
   
   
   trzni_rad['' != cislo_parcely, .N] # parcel 320 
@@ -170,5 +208,38 @@ etl <- function() {
   
   trzni_rad[ulice != '' & cislo_domu != '', .N] # ulice a cislo domu: 528
   
+  trzni_rad <- annotate_druh_zbozi(trzni_rad)
+  
+  # View(katastralni_uzemi_dt)
+  write.csv(trzni_rad, '../data/trzni_rad_tagy_v9.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
+  
+  trzni_rad[,tz_id := (1:nrow(trzni_rad)) * 100]
+  trzni_rad_bak <- trzni_rad
+  trzni_rad_bak -> trzni_rad
+  trzni_rad <- merge(trzni_rad, katastralni_uzemi_dt, by.x = 'ku', by.y = 'nazev_ku', all.x = TRUE)
+  setkeyv(trzni_rad, 'tz_id')
+  
+  trzni_rad[is.na(ku), ku := '']
+  trzni_rad[, cislo_ku_s := as.character(cislo_ku)]
+  trzni_rad[, cislo_ku := NULL]
+  # trzni_rad[, cislo_ku.y := NULL]
+  trzni_rad[, cislo_ku := cislo_ku_s]
+  trzni_rad[, cislo_ku_s := NULL]
+  trzni_rad[is.na(cislo_ku), cislo_ku := '']
+  
+  trzni_rad <- trzni_rad[,list(tz_id, druh_mista, mestska_cast, adresa, mista, zabor, lode, prodejni_doba, doba_provozu, druh_zbozi, 
+                               vice_zaznamu, ulice, cislo_domu, cislo_parcely, ku, cislo_ku, tags)]
+  
+  write.csv(trzni_rad, '../data/trzni_rad_tagy_ku_v10.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'UTF-8')
+  write.csv(trzni_rad, '../data/trzni_rad_tagy_ku_v10_cp1250.csv', quote = TRUE, row.names = FALSE, fileEncoding = 'CP1250')
+  
+  View(trzni_rad)
+  
+  for (i in 1:nrow(trzni_rad)) {
+    if (trzni_rad[i, ulice]) {
+      
+    }
   }
+    
+}
 
