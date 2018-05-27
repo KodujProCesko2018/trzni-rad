@@ -3,11 +3,15 @@
 
 <head>
 
-	<title>Žádost k | Tržní řád Prahy</title>
-
+	<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta charset="utf-8">
+	<title>Žádost | Tržní řád Prahy</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- FONT
@@ -21,11 +25,76 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/leaflet-easy-button.css" />
+	<link rel="stylesheet" href="css/leaflet-tag-filter-button.css" />
+
+
+	<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/leaflet.js"></script>
+	<script src="js/leaflet.draw.js"></script>
+	<script src="js/basicMap.js"></script>
+	<script src="js/leaflet-easy-button.js"></script>
+	<script src="js/leaflet-tag-filter-button.js"></script>
 
 	<!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<link rel="icon" type="image/png" href="favicon.png">
 
+	<title>Žádost o zařazení | Tržní řád Prahy</title>
+	<script type="text/javascript" charset="utf-8" async defer>
+		function toggle(element, toggleId) {
+			element.parentNode.parentNode.style.display = 'none';
+			document.getElementById(toggleId).style.display = 'block';
+		}
+
+	</script>
+
+	<script>
+		var drawnItems = null;
+
+		function updateGeometry() {
+			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+			console.log(geojsonToBeSentToBE);
+			// set value in the form
+			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
+		}
+
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
+
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
+				}
+			}));
+
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
+
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
+
+	</script>
 </head>
 
 <body onload="initMap(); initDrawing()">
@@ -46,53 +115,21 @@
 						Návrh
 					</h1>
 				</div>
-			</div>
 
-			<div class="row">
-				<p> na změnu přílohy (novelu) nařízení hl.&thinsp;m. Prahy č.&thinsp;9/2011 Sb. hl.&thinsp;m. Prahy, kterým se vydává tržní
-					řád, ve znění pozdějších předpisů.
-				</p>
-			</div>
-
-			<div class="row">
-				<!-- 				<div class="one column lg-ico-wrap">
-					<span class="lg-ico">
-						&ldquo;
-					</span></div> -->
-
-				<h3>
-					V tomto formuláři vyplníte:
-				</h3>
-
-				<p>
-					<ol>
-						<li>
-							Co navrhujete
-						</li>
-
-						<li>
-							Adresu řešeného místa
-						</li>
-
-						<li>
-							Prodejní dobu a zboží
-						</li>
-
-						<li>
-							Vaše údaje
-						</li>
-					</ol>
-					a následné ho odešlete na Magistrát.
+				<p class="twelve columns">
+					na změnu přílohy (novelu) nařízení hl.m. Prahy č. 9/2011 Sb. hl. m. Prahy, kterým se vydává tržní řád, ve znění pozdějších
+					předpisů
 				</p>
 			</div>
 		</div>
-		</div>
 
 
 
 
-		<div class="container">
-			<form action="/zadost" method="POST">
+
+		<form action="/zadost" method="POST">
+			<div class="container">
+
 				<fieldset>
 					<legend>
 						1. Co navrhujete
@@ -101,7 +138,7 @@
 					<div class="row">
 						<div class="one-third column">
 							<label for="na">
-								Vyberte typ návrhu
+								Vyberte co navrhujete
 							</label>
 							<select name="na" class="u-full-width">
 								<option value="zařazení">zařazení </option>
@@ -212,21 +249,20 @@
 						</ul>
 					</div>
 				</fieldset>
-		</div>
-		<!--	/.container	-->
 
 
 
 
 
-		<fieldset>
-			<div class="container">
-				<legend>2. Adresa řešeného místa</legend>
+				<fieldset>
+					<legend>Adresa místa</legend>
 
-				<p>
-					Adresu můžete zvolit nakreslením oblasti na mapě, nebo vyplnit textem níž.
-				</p>
+					<p>
+						Adresu můžete zvolit nakreslením polygonu na mapě, nebo vyplnit textem níž.
+					</p>
+
 			</div>
+			<!--	/.container	-->
 
 
 
@@ -240,6 +276,7 @@
 
 
 			<div class="container">
+
 				<div class="row">
 					<div class="columns five">
 						<label for="field_ulice">Název ulice</label>
@@ -268,294 +305,183 @@
 					<div class="columns two">
 						<label for="field_velikost">Velikost místa</label>
 						<span class="nowrap">
-							<input class="u-full-width" id="field_velikost" type="number" name="velikost" placeholder="minimálně 2">
-							<span>
-								m
-								<sup class="sup">2</sup>
-							</span>
+							<input class="u-full-width" id="field_velikost" type="text" name="velikost" placeholder="minimálně 2"> m
+							<sup class="sup">2</sup>
 						</span>
-						<!--		/.nowrap		-->
-					</div>
-
-					<div class="columns three offset-by-one">
-						<label for="field_pocet">Počet prodejních míst v něm</label>
-						<input id="field_pocet" type="number" name="pocet" value="1">
 					</div>
 				</div>
 
 				<div class="row">
-					<label for="field_upresneni">
-						Další upřesnění umístění
-					</label>
-					<textarea rows="1" cols="" class="u-full-width" id="field-upresneni" type="text" name="upresneni" placeholder="např. dva metry od chodníku směrem ke kašně"></textarea>
+					<div class="twelve columns">
+						<label for="field_upresneni">Další upřesnění umístění</label>
+						<input class="u-full-width" id="field-upresneni" type="text" name="upresneni">
+					</div>
 				</div>
+
+				<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
+				<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni">
+
+				<label for="field_doba">Prodejní doba</label>
+				<input class="u-full-width" id="field_doba" type="text" name="doba">
+
+				<label for="field_trasa">Trasa pro pojízdný prodej (vymezená názvy ulic)</label>
+				<input class="u-full-width" id="field_trasa" type="text" name="trasa">
+
+				<label for="field_druh_zbozi">Druh prodávaného zboží (sortiment) nebo poskytované služby</label>
+				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi">
+
+				<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
+				<input class="u-full-width" id="field_termin" type="text" name="termin">
+				</fieldset>
+
+
+
+
+				<fieldset>
+					<legend>Navrhovatel</legend>
+					<label for="field_jmeno">Příjmení a jméno</label>
+					<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
+
+					<label for="field_firma">Obchodní firma/název</label>
+					<input class="u-full-width" id="field_firma" type="text" name="firma">
+
+					<label for="field_adresa">Sídlo/doručovací adresa</label>
+					<input class="u-full-width" id="field_adresa" type="text" name="adresa">
+
+					<label for="field_ico">Identifikační číslo</label>
+					<input class="u-full-width" id="field_ico" type="text" name="ico">
+
+					<label for="field_tel">Telefon/elektronická adresa</label>
+					<input class="u-full-width" id="field_tel" type="text" name="tel">
+				</fieldset>
+				<input class="u-full-width" class="button-primary" type="submit" value="Odeslat">
 			</div>
 			<!--	/.container	-->
-		</fieldset>
-
-
-
-
-
-		<div class="container">
-			<fieldset>
-				<legend>
-					3. Prodejní doba a zboží
-				</legend>
-
-				<div class="row">
-					<div class="one-half column">
-						<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
-						<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni" placeholder="např. krytý dřevěný stánek 4&times;4&times;3m">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="one-third column">
-						<label for="field_doba">Prodejní doba</label>
-						<input class="u-full-width" id="field_doba" type="text" name="doba" placeholder="např. 8:00-22:00 od pátku do neděle">
-					</div>
-				</div>
-
-				<label for="field_trasa">
-					Trasa pro pojízdný prodej
-					<i>
-						(vymezená názvy ulic)
-					</i>
-				</label>
-				<input class="u-full-width" id="field_trasa" type="text" name="trasa" placeholder="např. na celém Staroměstském náměstí">
-
-				<label for="field_druh_zbozi">
-					Druh prodávaného zboží
-					<i>
-						(sortiment)
-					</i>
-					nebo poskytované služby</label>
-				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi" placeholder="např. sezónní ovoce a zelenina, v zimě med a uzeniny">
-
-				<div class="row">
-					<div class="two-thirds column">
-						<label for="field_termin">Termín provozu</label>
-						<input class="u-full-width" id="field_termin" type="text" name="termin" placeholder="např. příležitostně, anebo celoročně, anebo 1.5.-31.10, anebo dva týdny před Vánoci">
-					</div>
-				</div>
-				<!--	/.row	-->
-			</fieldset>
-		</div>
-
-
-
-
-
-		<div class="container">
-			<fieldset>
-
-				<div class="row">
-					<div class="four columns">
-						<legend>4. Vaše údaje</legend>
-					</div>
-
-					<div class="four columns h-i h-i-udaje">
-						<i>
-							jako navrhovatele změny
-						</i>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="one-third column">
-						<label for="field_prijmeni">Příjmení</label>
-						<input class="u-full-width" id="field_prijmeni" type="text" name="prijmeni">
-					</div>
-
-					<div class="one-third column">
-						<label for="field_jmeno">Jméno</label>
-						<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="one-half column">
-						<label for="field_firma">
-							Název firmy
-							<i>
-								nepovinné
-							</i>
-						</label>
-						<input class="u-full-width" id="field_firma" type="text" name="firma">
-					</div>
-				</div>
-
-				<h3 class="mt-2">
-					Sídlo
-				</h3>
-
-				<div class="row">
-					<div class="columns five">
-						<label for="field_sidlo-ulice">Název ulice</label>
-						<input class="u-full-width" id="field_sidlo-ulice" type="text" name="ulice">
-					</div>
-
-					<div class="columns two">
-						<label for="field_sidlo-cp">Číslo popisné</label>
-						<input class="u-full-width" id="field_sidlo-cp" type="text" name="cp">
-					</div>
-
-					<div class="columns two">
-						<label for="field_sidlo-co">Číslo orientační</label>
-						<input class="u-full-width" id="field_sidlo-co" type="text" name="co">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="columns three">
-						<label for="field_sidlo-mesto">Město</label>
-						<input class="u-full-width" id="field_sidlo-mesto" type="text" name="co" placeholder="stačí např. Praha">
-					</div>
-
-					<div class="columns two">
-						<label for="field_sidlo-psc">PSČ</label>
-						<input class="u-full-width" id="field_sidlo-psc" type="text" name="psc" placeholder="např. 841&thinsp;05">
-					</div>
-				</div>
-
-				<div class="row mt-2">
-					<div class="four columns">
-						<h3>
-							Doručovací adresa
-						</h3>
-					</div>
-
-					<div class="four columns h-i h-i-adresa">
-						<i>
-							(vyplňte jen pokud je jiná než sídlo)
-						</i>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="columns five">
-						<label for="field_dorucovaci-ulice">Název ulice</label>
-						<input class="u-full-width" id="field_dorucovaci-ulice" type="text" name="ulice">
-
-					</div>
-
-					<div class="columns two">
-						<label for="field_dorucovaci-cp">Číslo popisné</label>
-						<input class="u-full-width" id="field_dorucovaci-cp" type="text" name="cp">
-					</div>
-
-					<div class="columns two">
-						<label for="field_dorucovaci-co">Číslo orientační</label>
-						<input class="u-full-width" id="field_dorucovaci-co" type="text" name="co">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="columns three">
-						<label for="field_dorucovaci-mesto">Město</label>
-						<input class="u-full-width" id="field_dorucovaci-mesto" type="text" name="co" placeholder="stačí např. Praha">
-					</div>
-
-					<div class="columns two">
-						<label for="field_dorucovaci-psc">PSČ</label>
-						<input class="u-full-width" id="field_dorucovaci-psc" type="text" name="psc" placeholder="např. 841&thinsp;05">
-					</div>
-				</div>
-
-				<div class="row mt-2">
-					<div class="two column">
-						<label for="field_ico">IČO</label>
-						<input class="u-full-width" id="field_ico" type="text" name="ico">
-					</div>
-				</div>
-
-				<div class="row mt-2">
-					<div class="two columns">
-						<label for="field_tel">Telefon</label>
-						<input class="u-full-width" id="field_tel" type="text" name="tel">
-					</div>
-
-					<div class="three columns">
-						<label for="field_mail">E&ndash;mail</label>
-						<input class="u-full-width" id="field_mail" type="text" name="mail">
-					</div>
-				</div>
-
-			</fieldset>
-
-			<p class="mt-4">
-				Žádost se odešle na Odbor živnostenský a občanskosprávní Magistrátu HM Prahy. Následně budete vyrozumeni e&ndash;mailem.
-			</p>
-			<input class="u-full-width button button-primary" type="submit" value="Odeslat žádost">
-		</div>
-		<!--	/.container	-->
 		</form>
+
+
+
+
+
+		<form action="/zadost" method="POST" class="container">
+
+			<fieldset>
+				<legend>Tržní řád</legend>
+
+				<div class="row">
+					<div class="columns five">
+						<label for="field_typ">Návrh na zařazení</label>
+						<select name="typ">
+							<option value="tržnice">tržnice </option>
+							<option value="tržiště">tržiště</option>
+							<option value="tržní">tržní místo</option>
+							<option value="trh">trh</option>
+							<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší než do 22,00 hod.)</option>
+							<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
+							<option value="předsunuté">předsunuté prodejní místo</option>
+							<option value="místo">místo pro nabídku prodeje zboží</option>
+							<option value="místo">místo pro nabídku služby</option>
+							<option value="ostatní">ostatní</option>
+						</select>
+					</div>
+					<div class="columns three">
+						<label for="field_typ_ostatni">Ostatní</label>
+						<input class="u-full-width" type="text" name="typ_ostatni">
+					</div>
+				</div>
+			</fieldset>
+
+
+
+
+
+			<fieldset id="fieldset-address">
+				<legend>Adresa místa (
+					<a href="#" onclick="javascript:toggle(this, 'fieldset-trail')">pojízdný prodej?</a>)</legend>
+				<div class="row">
+					<div class="columns four">
+						<label for="field_ulice">Ulice</label>
+						<input class="u-full-width" id="field_ulice" type="text" name="ulice">
+					</div>
+					<div class="columns two">
+						<label for="field_cp">č.p.</label>
+						<input class="u-full-width" id="field_cp" type="text" name="cp">
+					</div>
+					<div class="columns two">
+						<label for="field_co">č.o</label>
+						<input class="u-full-width" id="field_co" type="text" name="co">
+					</div>
+					<div class="columns two">
+						<label for="field_co">Městská část</label>
+						<input class="u-full-width" id="field_mestska_cast" type="text" name="mestska_cast" placeholder="Praha 2">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="columns three">
+						<label for="field_parcelni_cislo">Parcelní číslo</label>
+						<input class="u-full-width" id="field_parcelni_cislo" type="text" name="parcelni_cislo">
+					</div>
+					<div class="columns three">
+						<label for="field_velikost">Velikost místa (m
+							<sup>2</sup>)</label>
+						<input class="u-full-width" id="field_velikost" type="text" name="velikost">
+					</div>
+				</div>
+			</fieldset>
+
+
+
+
+
+			<fieldset id="fieldset-trail" style="display:none">
+				<legend>Pojízdný prodej (
+					<a href="#" onclick="toggle(this, 'fieldset-address')">stánek?</a>)</legend>
+				<label for="field_trasa">Trasa (vymezená názvy ulic)</label>
+				<input class="u-full-width" id="field_trasa" type="text" name="trasa">
+			</fieldset>
+
+
+
+
+
+			<fieldset>
+				<legend>Druh prodeje</legend>
+				<label for="field_druh_zarizeni">Druh prodejního zařízení</label>
+				<input class="u-full-width" id="field_druh_zarizeni" type="text" name="druh_zarizeni">
+				<label for="field_doba">Prodejní doba</label>
+				<input class="u-full-width" id="field_doba" type="text" name="doba">
+
+				<label for="field_druh_zbozi">Druh prodávaného zboží (sortiment) nebo poskytované služby</label>
+				<input class="u-full-width" id="field_druh_zbozi" type="text" name="druh_zbozi">
+				<label for="field_termin">Termín provozu (např.:, příležitostně, celoročně, od 1.5.-31.10, )</label>
+				<input class="u-full-width" id="field_termin" type="text" name="termin">
+			</fieldset>
+
+
+
+
+
+			<fieldset>
+				<legend>Navrhovatel</legend>
+				<label for="field_jmeno">Příjmení a jméno</label>
+				<input class="u-full-width" id="field_jmeno" type="text" name="jmeno">
+				<label for="field_firma">Obchodní firma/název</label>
+				<input class="u-full-width" id="field_firma" type="text" name="firma">
+				<label for="field_adresa">Sídlo/doručovací adresa</label>
+				<input class="u-full-width" id="field_adresa" type="text" name="adresa">
+				<label for="field_ico">Identifikační číslo</label>
+				<input class="u-full-width" id="field_ico" type="text" name="ico">
+				<label for="field_tel">Telefon/elektronická adresa</label>
+				<input class="u-full-width" id="field_tel" type="text" name="tel">
+			</fieldset>
+
+			<input type="hidden" name="polygon" id="field_polygon" value="" />
+
+			<input class="u-full-width button button-primary" type="submit" value="Odeslat žádost">
+		</form>
+
 	</main>
-
-
-
-
-	<!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="js/leaflet.js"></script>
-	<script src="js/leaflet.draw.js"></script>
-	<script src="js/basicMap.js"></script>
-
-	<script type="text/javascript" charset="utf-8" async defer>
-		function toggle(element, toggleId) {
-			element.parentNode.parentNode.style.display = 'none';
-			document.getElementById(toggleId).style.display = 'block';
-		}
-
-	</script>
-
-	<script>
-		var drawnItems = null;
-
-		function updateGeometry() {
-			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
-			console.log(geojsonToBeSentToBE);
-			// set value in the form
-			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
-		}
-
-		function initDrawing() {
-			// drawing stuff
-			drawnItems = L.featureGroup().addTo(map);
-
-			map.addControl(new L.Control.Draw({
-				draw: {
-					circle: false,
-					polyline: false,
-					rectangle: false,
-					marker: false,
-					circlemarker: false,
-					polygon: {
-						allowIntersection: false,
-						showArea: true
-					}
-				},
-				edit: {
-					featureGroup: drawnItems,
-					poly: {
-						allowIntersection: false
-					}
-				}
-			}));
-
-			map.on(L.Draw.Event.CREATED, function (event) {
-				drawnItems.addLayer(event.layer);
-				updateGeometry();
-			});
-
-			map.on(L.Draw.Event.EDITED, updateGeometry);
-			map.on(L.Draw.Event.DELETED, updateGeometry);
-		}
-
-	</script>
-
 </body>
 
 </html>
