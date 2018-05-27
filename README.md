@@ -21,7 +21,7 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 
 [na slides.com](https://slides.com/dugi/deck-5/edit)
 
-## Použité nástroje
+## Použité technologie
 
 ### [Leaflet JS](https://leafletjs.com/), [Leaflet Draw JS](https://github.com/Leaflet/Leaflet.draw) 
 
@@ -29,9 +29,19 @@ Leaflet je jednoduchá frontendová Javascriptová knihovna pro zobrazení a pr�
 
 Leaflet Draw umožuje do mapy kreslit čáry a polygony a ty pak získat ve formě např. [GeoJsonu](http://geojson.org/).
 
-* Normalize CSS
-* Skeleton CSS
-* jQuery JS
+V projektu jsou zdrojové kódy zmražené ve verzích Leaflet: 1.3.1 a Leaflet Draw: 1.0.2. To se týka souborů:
+```
+css/leaflet.css
+css/leaflet.draw.css
+css/images/spritesheet.svg (pouzite v css/leaflet.draw.css)
+
+js/leaflet.js
+js/leaflet.draw.js
+```
+
+### Normalize CSS
+### Skeleton CSS
+### jQuery JS
 
 ## Styly
 
@@ -41,14 +51,10 @@ Leaflet Draw umožuje do mapy kreslit čáry a polygony a ty pak získat ve form
 
 ### Ostatní (TODO:)
 
-* `<link rel="stylesheet" href="css/leaflet.css">`
-* `<link rel="stylesheet" href="css/leaflet.draw.css">`
 * `<link rel="stylesheet" href="css/normalize.css">`
 * `<link rel="stylesheet" href="css/skeleton.css">`
 
 ## Skripty (TODO:)
 
 * `<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>`
-* `<script src="js/leaflet.js"></script>`
-* `<script src="js/leaflet.draw.js"></script>`
 * `<script src="js/basicMap.js"></script>`

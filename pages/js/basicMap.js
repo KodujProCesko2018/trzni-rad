@@ -53,7 +53,7 @@ function initMap() {
     x.send(null);
 
     L.control.tagFilterButton({
-        data: ['fast', 'slow', 'middle', 'none'],
+        data: ['Ovoce, Zelenina', 'Farmářské trhy', 'Vánoční trhy', 'Velikonoční trhy', 'Půjčovna', 'Upomínkové předměty', 'Zmrzlina', 'Občerstvení', 'Alkohol', 'Textil', 'Květiny', 'Čištění peří', 'lodní lístky na vyhlídkové plavby', 'Tabák', 'Dušičkové trhy', 'Rybí trhy'],
         icon: '<img src="css/images/filter.png">',
         filterOnEveryClick: true,
     }).addTo(map);
