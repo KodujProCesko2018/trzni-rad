@@ -111,3 +111,16 @@ input[type="number"] {
 .lg-ico {
     font-size: 5rem;
 } */
+
+label {
+    display: initial;
+}
+
+input[type="radio"] {
+    width: 2rem;
+    height: 2rem;
+}
+
+.list-unstyled {
+    list-style: none;
+}
