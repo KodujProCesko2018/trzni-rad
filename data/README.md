@@ -14,3 +14,5 @@ Data jsou extrahována z originálního dokumentu do csv [trzni rad - trzni rad.
 Problémy, které z toho plynuly převážně z manuálního "nekontrolovaného" zápisu do původního dokumentu. Orientační a Popisná čísla jsou zapisovaná bez ohledu na pořadí, pokud je uvedena ulice, tak občas číslo domu chybí. Občas je uveden roh ulic, občas oblast ohraničená ulicemi. Místy je uvedeno číslo parcely bez uvedení příslušného katastárlního území.
 
 Pro extrakci bylo použito krosreferencování textu se seznamem pražskýc ulic a seznamem katastrálních území. Z toho vyplynuly obtíže s názvy ulic jako "Hlavní", "U kostela". Stejný text se totiž vyskytuje i jinak v textu.
+
+Unikátně identifikovat se podařilo **219** parcel a **528** unikátních pozic z kombinace ulice a číslo domu
