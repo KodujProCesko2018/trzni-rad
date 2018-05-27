@@ -43,4 +43,4 @@ Druhy prikaz by mel automaticky servírovat změněné soubory.
 
 Nebo s parametry (pro produkční nasazení)
 
-$ ./server --host <verejna-ip> --port 80
+`$ ./server --host <verejna-ip> --port 80`
