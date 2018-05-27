@@ -35,8 +35,9 @@ Binárka potřebuje ke správnému fungování soubor "trzni-rad.geojson".
 
 Binárku lze spustit pomocí
 
-$ ./server
-$ ./server --debug 
+`$ ./server`
+
+`$ ./server --debug`
 
 Druhy prikaz by mel automaticky servírovat změněné soubory.
 
