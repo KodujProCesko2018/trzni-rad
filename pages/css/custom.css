@@ -124,3 +124,7 @@ input[type="radio"] {
 .list-unstyled {
     list-style: none;
 }
+
+.leaflet-bar .tag-filter-tags-container {
+    margin-left: 40px;
+}
