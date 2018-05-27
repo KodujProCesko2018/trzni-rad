@@ -1,0 +1,6 @@
+#complied server files
+server/server.exe
+server/statik.exe
+server/statik/statik.go
+getCoords/venv
+.idea/workspace.xml

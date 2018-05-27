@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+	<title>Prodej mimo provozovnu | Tržní řád Prahy</title>
+
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<!--<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>-->
+
+	<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="css/leaflet.css">
+	<link rel="stylesheet" href="css/leaflet.draw.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/custom.css">
+
+	<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+
+<body onload="initMap(); initDrawing()">
+
+	<main>
+
+		<div class="container">
+			<h1>
+				Prodej mimo provozovnu
+			</h1>
+
+			<p>
+				V Praze možno mimo provozovnu prodávat zboží nebo služby jen na místech zařazených do
+			</p>
+
+			<h2>
+				Tržního řádu
+			</h2>
+
+			<p>
+				A to:
+				<ul>
+					<li>
+						Tržních místech,
+						<i>
+							většinou samostatní místa pro několik málo stánků
+						</i>
+					</li>
+
+					<li>
+						Restauračních zahrádkách
+						<i>
+							s povolenou provozní dobou delší, než do 22. hod.
+						</i>
+					</li>
+
+					<li>
+						Předsunutých prodejních místech,
+						<i>
+							většinou součást kamenného obchodu
+						</i>
+					</li>
+
+					<li>
+						Tržnicích,
+						<i>
+							většinou kryté budovy
+						</i>
+					</li>
+
+					<li>
+						Tržištích,
+						<i>
+							většinou exteriér
+						</i>
+					</li>
+
+					<li>
+						Trasách pro pojízdný prodej zboží nebo poskytování služby,
+						<i>
+							jako například zmrzlinářské vozíky s kolečky
+						</i>
+					</li>
+
+					<li>
+						A dalších místech, které se nedají zařadit do těchto kategorií
+					</li>
+				</ul>
+			</p>
+		</div>
+		<!--	/.row	-->
+
+
+
+
+
+		<div id="map" class="map u-max-full-width">
+		</div>
+
+		
+	
+			<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h2>
+						Co se prodává ve vaší čtvrti?
+					</h2>
+
+					<p>
+					  <a href="graphs/zahr1.png" title="Zahrádky restaurací"><img src="graphs/zahr6small.png"></a>
+						<a href="graphs/trhy1.png" title="Farmářské trhy"><img src="graphs/trhy3small.png"></a>
+						<a href="graphs/trhypc1.png" title="Je u vás dost farmářských trhů? "><img src="graphs/trhypc2small.png"></a>
+
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--	/.row		-->
+
+
+
+		<div class="container">
+			<div class="row">
+				<div class="twelve columns">
+					<h2>
+						Omezení
+					</h2>
+
+					<p>
+						Na jakýkoliv prodej
+						<i>
+							mimo provozovnu
+						</i>
+						potřebujete
+						<b>
+							zábor,
+						</b>
+						o který požádáte u Vaší
+					</p>
+				</div>
+
+				<div class="one-third column">
+					<label for="mestskeCasti">
+						městské části
+					</label>
+
+					<select id="mestskeCasti" class="u-full-width">
+						<option value="Option 1">Praha 1</option>
+						<option value="Option 2">Praha 2</option>
+						<option value="Option 3">etc.</option>
+					</select>
+				</div>
+
+				<a href="#" class="button button-secondary two-thirds column offset-by-two">
+					Požádat o zábor u městské části
+					<span class="upload2 icon"></span>
+				</a>
+
+			</div>
+		</div>
+		<!--	/.row		-->
+
+
+
+
+
+		<div class="container">
+			<h2>
+				Jak zažádat?
+			</h2>
+
+			<p>
+				Vyplníte formulář &rightarrow; ten se odešle na Magistrát &rightarrow; ze kterého Vám do 30 dní pošlou vyrozumnění na e&ndash;mail.
+			</p>
+
+			<a href="zadost.html" class="button button-primary two-thirds column offset-by-two">
+				Vyplnit formulář &#10148;
+			</a>
+
+		</div>
+
+
+
+
+
+		<div class="container">
+			<h2>
+				Kontroly
+			</h2>
+
+			<p>
+				Pravidelný prodej mimo provozovnu, vyjma kulturních akcí a sporovních podujetí, musí být schválen Magistrátem v Tržním řádu.
+			</p>
+
+			<p>
+				Jinak je prodej nelegálí a můžete dostat pokutu.
+			</p>
+
+			<p class="mt-4">
+				<h4>
+					Prodej mimo provozovnu dále upravují:
+				</h4>
+
+				<ul>
+					<li>
+						Zákon č. 455/1991 Sb., o živnostenském podnikání (živnostenský zákon), ve znění pozdějších předpisů.
+					</li>
+
+					<li>
+						Nařízení č. 9/2011 Sb.hl.m.Prahy, kterým se vydává tržní řád, ve znění nařízení č. 5/2012 Sb.hl.m.Prahy, nařízení č. 14/2012
+						Sb.hl.m.Prahy, nařízení č. 23/2012 Sb.hl.m.Prahy, nařízení č. 9/2013 Sb.hl.m.Prahy, nařízení č. 2/2014 Sb.hl.m.Prahy,
+						nařízení č. 16/2014 Sb.hl.m.Prahy a nařízení č. 8/2015 Sb.hl.m.Prahy.
+					</li>
+
+					<li>
+						<a href="http://www.praha.eu/public/db/8f/f3/907326_112418_pozadavky_hygieny.doc">
+							Základní hygienické požadavky při provozování stravovacích služeb, pro prodej zmrzliny ve stánkovém prodeji a pro farmářské
+							trhy
+						</a>
+					</li>
+
+					<li>
+						<a href="http://www.praha.eu/public/97/3f/1a/907328_112419_pozadavky_SZPI.doc">
+							Požadavky na prodej na farmářských trzích ze strany SZPI
+						</a>
+					</li>
+
+					<li>
+						<a href="http://www.praha.eu/public/63/ef/aa/907330_112420_pozadavky_veterinarni_spravy.doc">
+							Veterinární a hygienické podmínky prodeje živočišných produktů na tržištích a tržnicích
+						</a>
+					</li>
+				</ul>
+			</p>
+
+			<p class="mt-4">
+				<h4>
+					Při prodeji musíte mít u sebe:
+				</h4>
+
+				<ul>
+					<li>
+						Povolení k záboru
+					</li>
+					<li>
+						Identifikační průkaz s fotkou,
+						<i>
+							například občanku
+						</i>
+					</li>
+				</ul>
+			</p>
+		</div>
+
+	</main>
+	<!--		/.container		-->
+
+
+
+
+
+	<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/leaflet.js"></script>
+	<script src="js/leaflet.draw.js"></script>
+	<script src="js/basicMap.js"></script>
+
+	<script type="text/javascript" charset="utf-8" async defer>
+		function toggle(element, toggleId) {
+			element.parentNode.parentNode.style.display = 'none';
+			document.getElementById(toggleId).style.display = 'block';
+		}
+
+	</script>
+
+	<script>
+		var drawnItems = null;
+
+		function updateGeometry() {
+			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+			console.log(geojsonToBeSentToBE);
+			// set value in the form
+			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
+		}
+
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
+
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
+				}
+			}));
+
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
+
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
+
+	</script>
+
+</body>
+
+</html>
