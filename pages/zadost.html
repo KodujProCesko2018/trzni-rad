@@ -3,15 +3,11 @@
 
 <head>
 
-	<!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<title>Žádost k | Tržní řád Prahy</title>
+
 	<meta charset="utf-8">
-	<title>Žádost | Tržní řád Prahy</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
-
-	<!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- FONT
@@ -26,71 +22,10 @@
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/custom.css">
 
-
-	<!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="js/leaflet.js"></script>
-	<script src="js/leaflet.draw.js"></script>
-	<script src="js/basicMap.js"></script>
-
 	<!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<link rel="icon" type="image/png" href="favicon.png">
 
-	<title>Žádost o zařazení | Tržní řád Prahy</title>
-	<script type="text/javascript" charset="utf-8" async defer>
-		function toggle(element, toggleId) {
-			element.parentNode.parentNode.style.display = 'none';
-			document.getElementById(toggleId).style.display = 'block';
-		}
-
-	</script>
-
-	<script>
-		var drawnItems = null;
-
-		function updateGeometry() {
-			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
-			console.log(geojsonToBeSentToBE);
-			// set value in the form
-			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
-		}
-
-		function initDrawing() {
-			// drawing stuff
-			drawnItems = L.featureGroup().addTo(map);
-
-			map.addControl(new L.Control.Draw({
-				draw: {
-					circle: false,
-					polyline: false,
-					rectangle: false,
-					marker: false,
-					circlemarker: false,
-					polygon: {
-						allowIntersection: false,
-						showArea: true
-					}
-				},
-				edit: {
-					featureGroup: drawnItems,
-					poly: {
-						allowIntersection: false
-					}
-				}
-			}));
-
-			map.on(L.Draw.Event.CREATED, function (event) {
-				drawnItems.addLayer(event.layer);
-				updateGeometry();
-			});
-
-			map.on(L.Draw.Event.EDITED, updateGeometry);
-			map.on(L.Draw.Event.DELETED, updateGeometry);
-		}
-
-	</script>
 </head>
 
 <body onload="initMap(); initDrawing()">
@@ -206,7 +141,7 @@
 				<legend>2. Adresa řešeného místa</legend>
 
 				<p>
-					Adresu můžete zvolit nakreslením polygonu na mapě, nebo vyplnit textem níž.
+					Adresu můžete zvolit nakreslením oblasti na mapě, nebo vyplnit textem níž.
 				</p>
 			</div>
 
@@ -474,6 +409,70 @@
 		<!--	/.container	-->
 		</form>
 	</main>
+
+
+
+
+	<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/leaflet.js"></script>
+	<script src="js/leaflet.draw.js"></script>
+	<script src="js/basicMap.js"></script>
+
+	<script type="text/javascript" charset="utf-8" async defer>
+		function toggle(element, toggleId) {
+			element.parentNode.parentNode.style.display = 'none';
+			document.getElementById(toggleId).style.display = 'block';
+		}
+
+	</script>
+
+	<script>
+		var drawnItems = null;
+
+		function updateGeometry() {
+			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+			console.log(geojsonToBeSentToBE);
+			// set value in the form
+			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
+		}
+
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
+
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
+				}
+			}));
+
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
+
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
+
+	</script>
+
 </body>
 
 </html>

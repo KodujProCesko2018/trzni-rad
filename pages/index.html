@@ -3,15 +3,11 @@
 
 <head>
 
-	<!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<meta charset="utf-8">
 	<title>Prodej mimo provozovnu | Tržní řád Prahy</title>
+
+	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
-	<!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- FONT
@@ -20,13 +16,11 @@
 
 	<!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="css/leaflet.css">
+	<link rel="stylesheet" href="css/leaflet.draw.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/custom.css">
-
-	<!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	<!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -154,7 +148,7 @@
 				</div>
 
 				<a href="#" class="button button-secondary two-thirds column offset-by-two">
-					Požádat o zábor
+					Požádat o zábor u městské části
 					<span class="upload2 icon"></span>
 				</a>
 
@@ -215,10 +209,6 @@
 					<li>
 						Povolení od hygienické stanice
 					</li>
-
-					<li>
-						etc.
-					</li>
 					<!-- TODO:	-->
 				</ul>
 			</p>
@@ -231,4 +221,66 @@
 
 
 
+	<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="js/leaflet.js"></script>
+	<script src="js/leaflet.draw.js"></script>
+	<script src="js/basicMap.js"></script>
+
+	<script type="text/javascript" charset="utf-8" async defer>
+		function toggle(element, toggleId) {
+			element.parentNode.parentNode.style.display = 'none';
+			document.getElementById(toggleId).style.display = 'block';
+		}
+
+	</script>
+
+	<script>
+		var drawnItems = null;
+
+		function updateGeometry() {
+			var geojsonToBeSentToBE = JSON.stringify(drawnItems.toGeoJSON());
+			console.log(geojsonToBeSentToBE);
+			// set value in the form
+			document.getElementById("field_polygon").value = geojsonToBeSentToBE;
+		}
+
+		function initDrawing() {
+			// drawing stuff
+			drawnItems = L.featureGroup().addTo(map);
+
+			map.addControl(new L.Control.Draw({
+				draw: {
+					circle: false,
+					polyline: false,
+					rectangle: false,
+					marker: false,
+					circlemarker: false,
+					polygon: {
+						allowIntersection: false,
+						showArea: true
+					}
+				},
+				edit: {
+					featureGroup: drawnItems,
+					poly: {
+						allowIntersection: false
+					}
+				}
+			}));
+
+			map.on(L.Draw.Event.CREATED, function (event) {
+				drawnItems.addLayer(event.layer);
+				updateGeometry();
+			});
+
+			map.on(L.Draw.Event.EDITED, updateGeometry);
+			map.on(L.Draw.Event.DELETED, updateGeometry);
+		}
+
+	</script>
+
 </body>
+
+</html>
