@@ -23,10 +23,10 @@ function onVectorDataReady(data) {
                 weight: 1,
                 opacity: 1,
                 fillOpacity: 0.8,
-                fill: true
+                fill: true,
+                tags: feature.properties.tags
             });
         }
-
    }).addTo(map);
 }
 
@@ -51,4 +51,10 @@ function initMap() {
         }
     };
     x.send(null);
+
+    L.control.tagFilterButton({
+        data: ['fast', 'slow', 'middle', 'none'],
+        icon: '<img src="css/images/filter.png">',
+        filterOnEveryClick: true,
+    }).addTo(map);
 }
