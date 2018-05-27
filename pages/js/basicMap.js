@@ -2,18 +2,13 @@ var map = null;
 var trzniMista = null;
 
 function onEachFeature(feature, layer) {
-    var popupContent = "<p>Adresa: ";
+    var popupContent = "<p>Ulice: " + feature.properties["ulice"] + "<br />";
+    popupContent += "Č.p./č.o.: " + feature.properties["cislo_popisne"] + "/" + feature.properties["cislo_orientacni"] + "<br />";
+    popupContent += "Městská část: " + feature.properties["momc"] + "<br />";
+    popupContent += "Druh mista: " + feature.properties["druh_mista"] + "</p>";
 
-    if (feature.properties && feature.properties["alternativeIdentifier"]) {
-        popupContent += feature.properties["alternativeIdentifier"];
-    }
-    popupContent += "</p>Kod: ";
+    popupContent += "</p>Druh zboží: " + feature.properties["druh_zbozi"] + "</p>";
  
-    if (feature.properties && feature.properties["gml_id"]) {
-        popupContent += feature.properties["gml_id"];
-    }   
-    popupContent += "</p>";
-
     layer.bindPopup(popupContent);
 }
 
