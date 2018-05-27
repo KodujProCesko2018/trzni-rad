@@ -94,7 +94,9 @@
 		<div class="container">
 			<form action="/zadost" method="POST">
 				<fieldset>
-					<legend>1. Co navrhujete</legend>
+					<legend>
+						1. Co navrhujete
+					</legend>
 
 					<div class="row">
 						<div class="one-third column">
@@ -108,25 +110,106 @@
 							</select>
 						</div>
 					</div>
+				</fieldset>
 
-
+				<fieldset>
+					<legend>
+						Vyberte pro jaký typ prostoru navrhujete
+					</legend>
 					<div class="row">
-						<div class="one-half column">
-							<label for="typ">
-								Vyberte pro jaký typ prostoru navrhujete
-							</label>
-							<select name="typ">
-								<option value="tržnice">tržnice </option>
-								<option value="tržiště">tržiště</option>
-								<option value="tržní">tržní místo</option>
-								<option value="trh">trh</option>
-								<option value="restaurační">restaurační zahrádka (s povolenou provozní dobou delší, než do 22. hod.)</option>
-								<option value="trasa">trasa pro pojízdný prodej zboží nebo poskytování služby</option>
-								<option value="předsunuté">předsunuté prodejní místo</option>
-								<option value="místo">místo pro nabídku prodeje zboží</option>
-								<option value="místo">místo pro nabídku služby</option>
-							</select>
-						</div>
+
+						<p class="mt-2">
+							<i>
+								Nejčastější
+							</i>
+						</p>
+
+						<ul class="list-unstyled">
+							<li>
+								<input id="trzni-misto" type="radio" name="radio-group" value="Tržní místo">
+								<label for="trzni-misto">
+									Tržní místo
+									<i>
+										většinou samostatní místo pro několik málo stánků
+									</i>
+								</label>
+							</li>
+
+							<li>
+								<input id="rest-zahradka" type="radio" name="radio-group" value="Restaruační zahrádka">
+								<label for="rest-zahradka">
+									Restaurační zahrádka
+									<i>
+										s povolenou provozní dobou delší, než do 22. hod.
+									</i>
+								</label>
+							</li>
+
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Předsunuté prodejní místo,
+									<i>
+										většinou součást kamenného obchodu
+									</i>
+								</label>
+							</li>
+						</ul>
+
+						<p class="mt-2">
+							<i>
+								Ostatní
+							</i>
+						</p>
+
+						<ul class="list-unstyled">
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Tržnice,
+									<i>
+										většinou kryté budovy
+									</i>
+								</label>
+							</li>
+
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Tržiště,
+									<i>
+										většinou exteriér
+									</i>
+								</label>
+							</li>
+
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Trasa pro pojízdný prodej zboží nebo poskytování služby
+								</label>
+							</li>
+
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Místo pro nabídku prodeje zboží
+									<i>
+										nespadající do žádné z kategorií
+									</i>
+								</label>
+							</li>
+
+							<li>
+								<input id="predsunute" type="radio" name="radio-group" value="Tržní místo">
+								<label for="predsunute">
+									Místo pro nabídku služby
+									<i>
+										nespadající do žádné z kategorií
+									</i>
+								</label>
+							</li>
+						</ul>
 					</div>
 				</fieldset>
 		</div>
