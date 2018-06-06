@@ -7,9 +7,9 @@ import (
 	"log"
 	"net/http"
 
-	_ "./statik"
 	"github.com/rakyll/statik/fs"
 	"github.com/tealeg/xlsx"
+	_ "server/statik"
 )
 
 const (
@@ -91,10 +91,10 @@ func main() {
 	}
 
 	if debug == true {
-		log.Println("Serving from File System folder ../pages/")
-		muxer.Handle("/", http.FileServer(http.Dir("../pages/")))
+		log.Println("Serving from File System folder pages/")
+		muxer.Handle("/", http.FileServer(http.Dir("pages/")))
 	} else {
-		log.Println("Serving embedded static! Did you update them by $ statik -src ../pages ?")
+		log.Println("Serving embedded static! Did you update them by $ statik -src <project>/pages ?")
 		muxer.Handle("/", http.FileServer(statikFS))
 	}
 	muxer.HandleFunc("/geojson", readGeoJSON)

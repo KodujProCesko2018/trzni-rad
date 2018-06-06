@@ -1,6 +1,12 @@
-#complied server files
-server/server.exe
-server/statik.exe
-server/statik/statik.go
-getCoords/venv
-.idea/workspace.xml
+venv
+.idea
+
+# ignore go workspace directories (specific to each OS)
+/bin/
+/pkg/
+
+# ignore dependencies
+/src/github.com
+
+# statik needs to be re-generated every time
+/src/server/statik

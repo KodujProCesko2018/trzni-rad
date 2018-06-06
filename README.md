@@ -8,7 +8,7 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 
   1. Převod stávající tabulky alespoň částečně do prostorového formatu (GeoJson) a její vizualizace na webu.
   1. Elektronizace formuláře pro návrh na změnu přílohy tržního řádu a jeho obohacení o strojově zpracovatelnou prostorovou složku.
-  
+
 # High-level popis řešení
 
 * Původni tabulka z Wordu jsme pomocí R převedli do CSV
@@ -16,7 +16,7 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 * Tržním místům byly přes katastrální webovou službu v Pythonu přiřazeny souřadnice a byla vyexportována jako GeoJson - více [zde](getCoords/README.md)
 * Výsedný trzni-rad.geojson je servírován staticky se zbytkem webu přes server v GO.
 * Na webu je dotupná přehledovám mapa tržních míst, které se podařilo z dat vytěžit. Místa lze filtrovat přes typ prodávaného zboží a lze si zobrazit informace o prodejním místě.
-* Dále je na webu formulář pro návrh na změnu přílohy tržního řádu obsahující údaje nutné pro následné řízení a navíc mapu, kde žadatel tržní místo (místa) označí polygonem. 
+* Dále je na webu formulář pro návrh na změnu přílohy tržního řádu obsahující údaje nutné pro následné řízení a navíc mapu, kde žadatel tržní místo (místa) označí polygonem.
 * Po odeslání formuláře jsou data uložena do xlsx tabulky na serveru, vyznačené polygony jsou uloženy v tabulce jako GeoJson string v souřadném systému EPSG:4326.
 
 ## Formulář
@@ -25,7 +25,23 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 
 ## Server
 
-[server](/server)
+Server je naprogramován v moderním kompilovaném jazyce Go od společnosti Google.
+Slouží jako backend pro formulář, jehož obsah uloží do Excelového souboru trzni-
+rad.xlsx. Server pro své fungování potřebuje soubor trzni-rad.geojson. Všechny
+soubory musí být/jsou vytvořeny ve stejné složce, v jaké je umístěn spustitelný
+soubor serveru.
+
+Pro vytvoření spustitelného souboru `server` resp. `server.exe` pod OS Windows
+se stačí se ujistit že máte nainstalované go a poté spustit `build.sh`. Binární
+soubor `server` resp. `server.exe` by se měl objevit v kořenu projektu (vedle
+souboru build.sh). Tato binárka má v sobě zakomponované statické soubory HTML,
+CSS a JS tudíž je naprosto nezávislá na umístění.
+
+Pro vývoj je možné server spustit s parametrem `--debug` který nepoužívá
+zakomponované statické soubory, ale servíruje soubory ze složky `pages/`
+umístěné vedle souboru `server`.
+
+Pro produkční nasazení server podporuje parametry `--host` a `--port`.
 
 ## Prezentace
 
@@ -33,7 +49,7 @@ Tržní řád jsou z podstaty (časo)prostorová data, která udávájí co lze 
 
 ## Použité technologie
 
-### [Leaflet JS](https://leafletjs.com/), [Leaflet Draw JS](https://github.com/Leaflet/Leaflet.draw) 
+### [Leaflet JS](https://leafletjs.com/), [Leaflet Draw JS](https://github.com/Leaflet/Leaflet.draw)
 
 Leaflet je jednoduchá frontendová Javascriptová knihovna pro zobrazení a práci s mapou na webu. Umožňuje například zobrazit základní mapu a na ní klikací vektorová data. Základní mapa je nyní použitá z free plánu z [Mapboxu], kde je nutné si založit účet dodat vlastni access token. V případě nutnosti lze zádkladní mapu získat i kompletně pomocí opensource nástrojů (Mapnik) z OpenStreetMap databáze, ale je to náročnější.
 
