@@ -45,7 +45,7 @@ Pro produkční nasazení server podporuje parametry `--host` a `--port`.
 
 ## Prezentace
 
-[na slides.com](https://slides.com/dugi/deck-5/edit)
+[na slides.com](https://slides.com/dugi/deck-5/)
 
 ## Použité technologie
 
